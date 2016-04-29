@@ -2,13 +2,13 @@
   # Capybara.register_driver :selenium_chrome do |app|
   #   Capybara::Selenium::Driver.new(app, browser: :"#{ENV['BROWSER']}")
   # end
-  Capybara.register_driver :selenium_chrome do |app|
+  Capybara.register_driver :selenium do |app|
     profile = Selenium::WebDriver::Firefox::Profile.new
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.timeout = 90 # instead of the default 60
     Capybara::Selenium::Driver.new(app, browser: :firefox, profile: profile, http_client: client)
   end
-  @session = Capybara::Session.new :selenium_chrome
+  @session = Capybara::Session.new :selenium
 # else
 #   # caps = Selenium::WebDriver::Remote::Capabilities.send("#{ENV['BROWSER']}".to_sym)
 #   caps = Selenium::WebDriver::Remote::Capabilities.send(ENV['BROWSER'].to_s.to_sym)
@@ -26,7 +26,7 @@
 # end
 
 Before do |scenario|
-  @session = Capybara::Session.new :selenium_chrome
+  @session = Capybara::Session.new :selenium
   if ENV['SCREENSHOTS'] == 'YES'
     Dir.mkdir 'tmp' unless File.exist? 'tmp'
     if scenario.respond_to?('scenario_outline')
