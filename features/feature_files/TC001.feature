@@ -10,5 +10,3 @@ Feature: test
       |Find Projects|
       |Sign In|
       |Register|
-      |Search|
-    And This is the end of testcase

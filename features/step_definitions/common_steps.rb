@@ -1,6 +1,6 @@
 
 Given 'I am at Home Page' do
-  @page = Login.new @session
+  @page = Homepage.new @session
   @page.open_site
 end
 

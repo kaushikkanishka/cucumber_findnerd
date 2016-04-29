@@ -1,10 +1,9 @@
 class Base
-
+  include RSpec::Matchers
   def open_site
-
-    puts read_url ENV['ENVIRONMENT']
-    puts "Inside open site #{@session.class}"
     @session.visit read_url ENV['ENVIRONMENT']
+    Capybara.default_max_wait_time = 30
+    self
   end
 
   def read_url(env)
