@@ -19,4 +19,29 @@ class Homepage < Base
     end
     self
   end
+
+  def click_registration_link
+    @session.find('.register>a').click
+    self
+  end
+
+  def enter_username(username)
+    @session.fill_in '#user_login', with: username
+    self
+  end
+
+  def enter_email(email)
+    @session.fill_in '#user_email', with: email
+    self
+  end
+
+  def enter_password(password)
+    @session.fill_in '#user_email', with: password
+    self
+  end
+
+  def enter_confirm_password(confirm_pwd)
+    @session.fill_in '#user_email', with: confirm_pwd
+    self
+  end
 end
