@@ -11,3 +11,11 @@ end
 And(/^I clicked on SignIn button$/) do
   @page = @page.click_signin_button
 end
+
+And(/^I enter (.*) as username for SignIn$/) do |username|
+  @page = @page.enter_login_username(username)
+end
+
+And(/^I enter (.*) as password for SignIn$/) do |password|
+  @page = @page.enter_login_password(password)
+end
