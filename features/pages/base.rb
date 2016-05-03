@@ -14,4 +14,10 @@ class Base
   def read_time_stamp
     @time = Time.now.utc.strftime('%Y%m%d%H%M%S')
   end
+
+  def click_sign_out_link
+    @session.find('.loginArrow').click
+    @session.find('.signOutQuit>a').click
+    Homepage.new(@session)
+  end
 end

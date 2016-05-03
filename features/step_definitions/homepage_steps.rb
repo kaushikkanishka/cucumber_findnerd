@@ -24,3 +24,7 @@ end
 And(/^I should see Terms and Conditions overlay$/) do
   pending
 end
+
+And(/^I clicked on SignIn link$/) do
+  @page = @page.click_signin_link
+end

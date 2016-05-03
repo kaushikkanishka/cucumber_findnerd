@@ -44,4 +44,9 @@ class Homepage < Base
     @session.fill_in '#user_email', with: confirm_pwd
     self
   end
+
+  def click_signin_link
+    @session.find('.sign>a').click
+    Login.new(@session)
+  end
 end

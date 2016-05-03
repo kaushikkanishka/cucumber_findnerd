@@ -4,10 +4,6 @@ Given 'I am at Home Page' do
   @page.open_site
 end
 
-Then(/^I enter username$/) do
-  pending
-end
-
-Given(/^I am at the Home Page$/) do
-  pending
+And 'This is the end of testcase' do
+  @page = @page.click_sign_out_link
 end
