@@ -1,5 +1,6 @@
-Feature: Test
-  Scenario Outline: Verify the Signin Functionality through Global Header
+Feature: Verify the Signin Functionality through Global Header
+  @sanity @signin @medium @positive
+  Scenario Outline: Signin through Global Header
     Given I am at Home Page
     And I clicked on SignIn link
     And I enter <Username> as username for SignIn
