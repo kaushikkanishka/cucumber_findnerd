@@ -20,4 +20,9 @@ class Base
     @session.find('.signOutQuit>a').click
     Homepage.new(@session)
   end
+
+  def assert_login_link
+    expect(@session).not_to have_css('.sign>a')
+    self
+  end
 end

@@ -19,3 +19,23 @@ end
 And(/^I enter (.*) as password for SignIn$/) do |password|
   @page = @page.enter_login_password(password)
 end
+
+When(/^I Clicked on “Sign in with LinkedIn” Button$/) do
+  @page = @page.click_linkedIn_signIn_button
+end
+
+And(/^I enter (.*) as username in LinkedIn overlay$/) do |linkedIn_username|
+  @page = @page.enter_linkedIn_username(linkedIn_username)
+end
+
+And(/^I enter (.*) as password in LinkedIn overlay$/) do |linkedIn_password|
+  @page = @page.enter_linkedIn_password(linkedIn_password)
+end
+
+And(/^I clicked on "Allow Access" button$/) do
+  @page = @page.click_linkedIn_allow_access_button
+end
+
+Then(/^I switched to linkedIn Popup$/) do
+  @page = @page.switched_to_linkedin_popup
+end
