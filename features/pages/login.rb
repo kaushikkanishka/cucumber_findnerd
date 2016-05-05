@@ -2,9 +2,7 @@ class Login < Base
   include RSpec::Matchers
 
   def initialize(session)
-    puts "before #{session}"
     @session = session
-    puts "after #{@session}"
   end
 
   def select_remember_me_checkbox
@@ -14,7 +12,9 @@ class Login < Base
 
   def click_signin_button
     @session.find('#user_session_submit').click
-    ShowDetailsPage.new(@session)
+    detail_page = ShowDetailsPage.new(@session)
+    navigation = LeftNavigation.new(@session)
+    [detail_page, navigation]
   end
 
   def enter_login_username(username1)

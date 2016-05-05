@@ -7,6 +7,7 @@ Feature: Verify the Signin Functionality through Global Header
     And I enter <Password> as password for SignIn
     And I clicked Remember me checkbox
     And I clicked on SignIn button
+    Then I should see the Activities page
     And This is the end of testcase
 
     Examples:

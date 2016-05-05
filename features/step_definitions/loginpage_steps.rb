@@ -9,7 +9,7 @@ And(/^I clicked Remember me checkbox$/) do
 end
 
 And(/^I clicked on SignIn button$/) do
-  @page = @page.click_signin_button
+  @page, @navi = @page.click_signin_button
 end
 
 And(/^I enter (.*) as username for SignIn$/) do |username|

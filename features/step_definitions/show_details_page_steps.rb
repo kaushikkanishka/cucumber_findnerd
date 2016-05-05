@@ -1,3 +1,3 @@
 Then(/^I should see the Activities page$/) do
-  expect(@session).to have_css('')
+  @page = @page.assert_activities_breadcrumb
 end
