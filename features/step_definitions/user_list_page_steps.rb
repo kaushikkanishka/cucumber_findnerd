@@ -8,7 +8,7 @@ Then(/^User Id with Image should be displayed$/) do
 end
 
 And(/^Name of user with image should be displayed$/) do
-  pending
+  @page = @page.assert_user_name(@nerd_name)
 end
 
 And(/^Status of user should be displayed$/) do

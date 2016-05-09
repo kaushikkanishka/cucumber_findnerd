@@ -25,4 +25,8 @@ class Base
     expect(@session).not_to have_css('.sign>a')
     self
   end
+
+  def convert_camelcase(string)
+
+  end
 end

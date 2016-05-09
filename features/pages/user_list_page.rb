@@ -9,9 +9,7 @@ class UserListPage < Base
     @session.find('#q').set(arg)
     sleep 5
     @session.within_frame 'mainiframe' do
-      puts "inside iframe"
-      @session.select 'u', :from => '#searchOption'
-      puts "iframe ends"
+      #@session.select 'u', :from => '#searchOption'
     end
     sleep 5
     @session.find('#submitbutton').click
@@ -20,10 +18,17 @@ class UserListPage < Base
   end
 
   def assert_user_id(nerd_name)
+    sleep 5
     name = nerd_name.split(' ')
     id = "@#{name.first}.#{name.last}"
     jq = "$(\"#mainiframe\").contents().find('.heading').text();"
     expect(@session.evaluate_script(jq).gsub(/\A[[:space:]]+|[[:space:]]+\z/, '')).to(be == id.downcase.strip)
+    self
+  end
+
+  def assert_user_name(nerd_name)
+    jq = "$(\"#mainiframe\").contents().find('.itemHeading:first').text();"
+    expect(@session.evaluate_script(jq).gsub(/\A[[:space:]]+|[[:space:]]+\z/, '').downcase).to(be == nerd_name.downcase.strip)
     self
   end
 end

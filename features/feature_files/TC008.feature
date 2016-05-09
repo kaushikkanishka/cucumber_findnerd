@@ -1,5 +1,4 @@
 Feature: Log In through Social Media Button LinkedIn
-  @sanity @critical @signin @positive
     Scenario Outline: Sign in with LinkedIn
 
     Given I am at Home Page
@@ -10,7 +9,7 @@ Feature: Log In through Social Media Button LinkedIn
     And I enter <LinkedIn_password> as password in LinkedIn overlay
     And I clicked on "Allow Access" button
     Then I should be logged in to the site
-    #And I should see the Activities page
+    And I should see the Activities page
     And This is the end of testcase
 
     Examples:

@@ -41,7 +41,6 @@ class Login < Base
   end
 
   def enter_linkedIn_password(linkedIn_password)
-    puts expect(@session).to have_css('#session_password-oauth2SAuthorizeForm')
     #@session.fill_in '#session_password-oauth2SAuthorizeForm', with: ""
     @session.find('#session_password-oauth2SAuthorizeForm').set(linkedIn_password)
     self
@@ -54,9 +53,7 @@ class Login < Base
 
   def switched_to_linkedin_popup
     main_window = @session.driver.browser.window_handles.first
-    puts "'main window' #{main_window}"
     linkedin_window = @session.driver.browser.window_handles.last
-    puts "'linkedin window' #{linkedin_window}"
     @session.driver.browser.switch_to.window(linkedin_window)
     self
   end
