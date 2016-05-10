@@ -7,4 +7,10 @@ class LeftNavigation < Base
     @session.find('.postTechJob.shiftingRight', text: 'Browse Nerds').click
     UserListPage.new(@session)
   end
+
+  def click_post_project_link
+    @session.find('.recordDesktopShare.postProjects.shiftingRight', text: 'Post Project').click
+    sleep 15
+    PostProject.new(@session)
+  end
 end

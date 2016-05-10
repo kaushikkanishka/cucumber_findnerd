@@ -28,3 +28,7 @@ end
 When(/^I clicked on "Browse Nerds" link$/) do
    @page = @navi.click_browse_nerds_link
 end
+
+When(/^I clicked on "Post Project" link$/) do
+  @page = @navi.click_post_project_link
+end
