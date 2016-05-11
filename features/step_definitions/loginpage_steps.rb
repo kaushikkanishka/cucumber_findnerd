@@ -39,3 +39,19 @@ end
 Then(/^I switched to linkedIn Popup$/) do
   @page = @page.switched_to_linkedin_popup
 end
+
+And(/^Click on “Forgot Password” link$/) do
+  @page = @page.click_forgot_password_link
+end
+
+And(/^I enter email id in Forgot Password overlay$/) do
+  @page = @page.enter_forgot_pwd_email('qapeter0303@yopmail.com')
+end
+
+And(/^I clicked on "Reset my Password" button$/) do
+  @page = @page.click_reset_pwd_button
+end
+
+Then(/^Following message is displayed on clicking "Reset Password" button$/) do |message|
+  @page = @page.assert_forgot_password_message(message)
+end

@@ -57,4 +57,29 @@ class Login < Base
     @session.driver.browser.switch_to.window(linkedin_window)
     self
   end
+
+  def click_forgot_password_link
+    @session.find('.forgotPswdSignIn').click
+    self
+  end
+
+  def enter_forgot_pwd_email(email)
+    @session.fill_in 'email', with: email
+    #@session.find('#email').set(email)
+    sleep 3
+    self
+  end
+
+  def click_reset_pwd_button
+    @session.find('.btn-primary').click
+    self
+  end
+
+  def assert_forgot_password_message(msg)
+    jq = "$('#forgotpassfrmNotice').text();"
+    puts "jq=#{@session.evaluate_script(jq)}"
+    expect(@session.evaluate_script(jq).gsub(/\A[[:space:]]+|[[:space:]]+\z/, '').downcase).to(be == msg.downcase.strip)
+    sleep 10
+    self
+  end
 end
