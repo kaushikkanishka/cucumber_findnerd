@@ -45,13 +45,16 @@ And(/^Click on “Forgot Password” link$/) do
 end
 
 And(/^I enter email id in Forgot Password overlay$/) do
-  @page = @page.enter_forgot_pwd_email('qapeter0303@yopmail.com')
+  @forgot_pwd_email = 'qapeter0303@yopmail.com'
+  @page = @page.enter_forgot_pwd_email(@forgot_pwd_email)
 end
 
 And(/^I clicked on "Reset my Password" button$/) do
   @page = @page.click_reset_pwd_button
 end
 
-Then(/^Following message is displayed on clicking "Reset Password" button$/) do |message|
-  @page = @page.assert_forgot_password_message(message)
+Then(/^Following message is displayed on clicking "Reset Password" button$/) do |table|
+  table.raw.flatten.each do |message|
+    @page = @page.assert_forgot_password_message(message)
+  end
 end

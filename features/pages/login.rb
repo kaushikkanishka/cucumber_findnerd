@@ -66,7 +66,6 @@ class Login < Base
   def enter_forgot_pwd_email(email)
     @session.fill_in 'email', with: email
     #@session.find('#email').set(email)
-    sleep 3
     self
   end
 
@@ -77,9 +76,7 @@ class Login < Base
 
   def assert_forgot_password_message(msg)
     jq = "$('#forgotpassfrmNotice').text();"
-    puts "jq=#{@session.evaluate_script(jq)}"
     expect(@session.evaluate_script(jq).gsub(/\A[[:space:]]+|[[:space:]]+\z/, '').downcase).to(be == msg.downcase.strip)
-    sleep 10
-    self
+    EmailTasks.new(@session)
   end
 end

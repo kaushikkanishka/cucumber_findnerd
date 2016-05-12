@@ -6,6 +6,10 @@ require 'yaml'
 require 'capybara-screenshot/cucumber'
 require 'capybara/rspec'
 require 'net/imap'
+require 'mail'
+require 'capybara/email'
+require 'capybara/email/rspec'
+
 
 #require_rel './../mixins/*.rb'
 require_rel './../pages/*.rb'
