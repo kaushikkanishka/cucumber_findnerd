@@ -45,7 +45,7 @@ And(/^Click on “Forgot Password” link$/) do
 end
 
 And(/^I enter email id in Forgot Password overlay$/) do
-  @forgot_pwd_email = 'qapeter0303@yopmail.com'
+  @forgot_pwd_email = 'qatest.kkaushik@gmail.com'
   @page = @page.enter_forgot_pwd_email(@forgot_pwd_email)
 end
 

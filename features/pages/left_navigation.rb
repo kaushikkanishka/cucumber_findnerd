@@ -10,7 +10,7 @@ class LeftNavigation < Base
 
   def click_post_project_link
     @session.find('.recordDesktopShare.postProjects.shiftingRight', text: 'Post Project').click
-    sleep 15
+    sleep 10
     PostProject.new(@session)
   end
 end

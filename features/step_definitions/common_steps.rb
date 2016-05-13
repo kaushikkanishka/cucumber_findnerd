@@ -32,3 +32,10 @@ end
 When(/^I clicked on "Post Project" link$/) do
   @page = @navi.click_post_project_link
 end
+
+And(/^I open the email$/) do
+  puts @page.inspect
+  puts @email.inspect
+  @page = @email.open_reset_pwd_email()
+  #@page = @page.open_email(@forgot_pwd_email)
+end
