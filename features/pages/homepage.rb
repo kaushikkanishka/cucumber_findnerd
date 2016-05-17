@@ -49,4 +49,5 @@ class Homepage < Base
     @session.find('.sign>a').click
     Login.new(@session)
   end
+
 end

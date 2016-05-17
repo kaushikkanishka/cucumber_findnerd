@@ -14,7 +14,8 @@ class Login < Base
     @session.find('#user_session_submit').click
     detail_page = ShowDetailsPage.new(@session)
     navigation = LeftNavigation.new(@session)
-    [detail_page, navigation]
+    email_page = EmailTasks.new(@session)
+    [detail_page, navigation, email_page]
   end
 
   def enter_login_username(username1)
@@ -79,4 +80,5 @@ class Login < Base
     expect(@session.evaluate_script(jq).gsub(/\A[[:space:]]+|[[:space:]]+\z/, '').downcase).to(be == msg.downcase.strip)
     EmailTasks.new(@session)
   end
+
 end

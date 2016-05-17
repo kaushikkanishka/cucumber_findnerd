@@ -1,7 +1,7 @@
 Feature:
 
  #Verify the Home page
-  @TC001 @sanity @regression @high @homepage @positive
+  @TC001 @main @sanity @regression @high @homepage @positive
   Scenario: Verify the Home page
 
     Given I am at Home Page
@@ -14,7 +14,7 @@ Feature:
       |Register|
 
  #Verify the Signin Functionality through Global Header
-  @TC006 @sanity @signin @medium @positive @regression
+  @TC006 @main @sanity @signin @medium @positive @regression
   Scenario Outline: Signin through Global Header
     Given I am at Home Page
     And I clicked on SignIn link
@@ -30,7 +30,7 @@ Feature:
       | qapeter   | 123456 |
 
  #Log In through Social Media Button LinkedIn
-  @TC008 @sanity @critical @signin @positive @regression
+  @TC008 @main @sanity @critical @signin @positive @regression
   Scenario Outline: Sign in with LinkedIn
 
     Given I am at Home Page
@@ -49,7 +49,7 @@ Feature:
       | evontech587@gmail.com | evontech_587      |
 
  #Verify the browse users functionality
-  @TC010 @sanity @positive @medium @positive @regression
+  @TC010 @main @sanity @positive @medium @positive @regression
   Scenario: Browse Users
 
     Given I login to the site as valid user

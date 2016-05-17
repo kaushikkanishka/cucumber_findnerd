@@ -22,7 +22,7 @@ Given(/^I login to the site as valid user$/) do
   @page = @page.click_signin_link
   @page = @page.enter_login_username('qapeter')
   @page = @page.enter_login_password('123456')
-  @page, @navi = @page.click_signin_button
+  @page, @navi, @email1 = @page.click_signin_button
 end
 
 When(/^I clicked on "Browse Nerds" link$/) do
@@ -39,3 +39,7 @@ And(/^I open the email$/) do
   @page = @email.open_reset_pwd_email()
   #@page = @page.open_email(@forgot_pwd_email)
 end
+
+# Then(/^I open gmail account$/) do
+#   @page = @page.open_reset_pwd_email
+# end
