@@ -10,4 +10,4 @@ cucumber --tags @TC001,@TC006
 #Start Jenkins
 sudo /etc/init.d/jenkins start
 http://localhost:8080/jenkins
-
+/var/lib/jenkins/secrets/initialAdminPassword

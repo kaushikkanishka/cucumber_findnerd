@@ -1,0 +1,9 @@
+mail:
+   host: imap.gmail.com
+   port: 993
+   test_mail_id: evon.tester@gmail.com
+   password: getsetgo123
+   mail_since_sec: 300
+   user_invite_from: noreply@app.ultralinq.net
+   create_user_invite_subject: You\'re invited to create an UltraLinq account
+   sleep_time: 300

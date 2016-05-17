@@ -6,11 +6,15 @@ require 'yaml'
 require 'capybara-screenshot/cucumber'
 require 'capybara/rspec'
 require 'net/imap'
+require 'mail'
+require 'capybara/email'
+require 'capybara/email/rspec'
+require 'gmail'
 
 #require_rel './../mixins/*.rb'
 require_rel './../pages/*.rb'
 
 ENV['BROWSER'] ||= 'firefox'
 ENV['ENVIRONMENT'] ||= 'stage'
-ENV['SCREENSHOTS'] ||= 'NO'
+ENV['SCREENSHOTS'] ||= 'YES'
 

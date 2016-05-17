@@ -26,7 +26,5 @@ class Base
     self
   end
 
-  def convert_camelcase(string)
 
-  end
 end

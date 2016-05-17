@@ -1,5 +1,5 @@
-# language: no
 Feature: Verify the Home page
+
   Scenario: Verify the Home page
 
     Given I am at Home Page
