@@ -4,6 +4,7 @@ class PostProject < Base
   end
 
   def assert_post_project_elements(table)
+    @session.within_frame 'mainiframe' do
     case table
       when 'Hire a freelancer or Tech team!'
         expect(@session).to(have_css('.techQuery>h2', text: 'Hire a freelancer or Tech team!'))
@@ -55,33 +56,68 @@ class PostProject < Base
       when 'Workload'
         expect(@session).to(have_css('#node_estimatedworkload_id'))
     end
+    end
     self
   end
 
   def assert_category_dropdown_default_value
+    @session.within_frame 'mainiframe' do
     expect(@session).to(have_css('#node_category_id>option:nth-child(1)'), text: 'Select Category')
     self
+      end
   end
 
   def click_fixed_price_radio_btn
-    find('#node_projectype_fixed').click
+    @session.within_frame 'mainiframe' do
+    @session.find('#node_projectype_fixed').click
     self
+      end
   end
 
   def click_hourly_price_radio_btn
-    find('#node_projectype_hourly').click
+    @session.within_frame 'mainiframe' do
+    @session.find('#node_projectype_hourly').click
     self
+      end
   end
 
   def assert_company_status_information(value)
     case value
       when 'Our team with No. of developers'
-        @session.assert_developers_count
+        puts "Session inside case2: #{@session}"
+        assert_developers_count
       when 'Who we work with No. of companies'
-        @session.assert_companies_count
+        assert_companies_count
       when 'Our work No. of projects'
-        @session.assert_projects_count
+        assert_projects_count
     end
+    self
+  end
+
+  def assert_developers_count
+      @session.within_frame 'mainiframe' do
+      expect(@session).to(have_css('.ourTeam>h5'), text: 'Our Team')
+      @session.find('.ourTeam>h4').is_a? Integer
+      expect(@session).to(have_css('.ourTeam>p'), text: 'Developers')
+      end
+    self
+  end
+
+  def assert_companies_count
+      @session.within_frame 'mainiframe' do
+      expect(@session).to(have_css('.whoWeWorkWith>h5'), text: 'Who we work with')
+      @session.find('.whoWeWorkWith>h4').is_a? Integer
+      expect(@session).to(have_css('.whoWeWorkWith>p'), text: 'Companies')
+      end
+    self
+  end
+
+  def assert_projects_count
+      @session.within_frame 'mainiframe' do
+      expect(@session).to(have_css('.ourWork>h5'), text: 'Our Work')
+      @session.find('.ourWork>h4').is_a? Integer
+      expect(@session).to(have_css('.ourWork>p'), text: 'Projects')
+      end
     self
   end
 end
