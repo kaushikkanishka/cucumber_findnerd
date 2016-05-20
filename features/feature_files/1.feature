@@ -49,7 +49,7 @@ Feature:
       | evontech587@gmail.com | evontech_587      |
 
  #Verify the browse users functionality
-  @TC010 @main @sanity @positive @medium @positive @regression
+  @TC010 @main @sanity @positive @medium @regression
   Scenario: Browse Users
 
     Given I login to the site as valid user
@@ -57,4 +57,42 @@ Feature:
     And I searched "Kanishka Kaushik" as user
     Then User Id with Image should be displayed
     And Name of user with image should be displayed
+    And This is the end of testcase
+
+
+ #Fields in Post a Tech Job
+  @TC011 @main @sanity @positive @medium @regression
+  Scenario: Verify the fields in Post a Tech Job
+    Given I login to the site as valid user
+    When I clicked on "Post Project" link
+    Then I should see the following on Post Project page
+      | Hire a freelancer or Tech team!                                          |
+      | Get instant applications from our database of companies and freelancers. |
+      | Post your requirements.                                                  |
+      | Select teams based on our revolutionary ranking algorithm.               |
+      | Manage project sprint, task, bugs through our PM tool.                   |
+      | Manage Team members & Improve productivity using our session tracker.    |
+      | Pay them through safe pay.                                               |
+      | All of the above @ 0 cost for the first 100 projects.                    |
+      | Title                                                                    |
+      | Testing Help icon                                                        |
+      | Attach Files, Zip etc                                                    |
+      | Record From Desktop                                                      |
+      | Record From Webcam                                                       |
+      | Preview Area                                                             |
+      | Tags                                                                     |
+      | You can create new content after 2 minutes gap of last created content.  |
+      | Preview Button                                                           |
+    And "Select Category" option should be selected by default in "Category" dropdown
+    And I should see the following dropdown on selecting "Fixed Price" radio button
+      | Budget   |
+      | Duration |
+    And I should see the following dropdown on selecting "Hourly Price" radio button
+      | Hourly Rate |
+      | Workload    |
+      | Duration    |
+    And I should see the following under "Company status Information" section
+      | Our team with No. of developers   |
+      | Who we work with No. of companies |
+      | Our work No. of projects          |
     And This is the end of testcase
