@@ -16,5 +16,5 @@ require_rel './../pages/*.rb'
 
 ENV['BROWSER'] ||= 'firefox'
 ENV['ENVIRONMENT'] ||= 'stage'
-ENV['SCREENSHOTS'] ||= 'YES'
+ENV['SCREENSHOTS'] ||= 'NO'
 

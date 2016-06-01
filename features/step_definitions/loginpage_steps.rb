@@ -13,6 +13,7 @@ And(/^I clicked on SignIn button$/) do
 end
 
 And(/^I enter (.*) as username for SignIn$/) do |username|
+  @uname = username
   @page = @page.enter_login_username(username)
 end
 

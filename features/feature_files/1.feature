@@ -96,3 +96,32 @@ Feature:
       | Who we work with No. of companies |
       | Our work No. of projects          |
     And This is the end of testcase
+
+ #Verify blog publish functionality
+  @TC012 @main @sanity @regression @positive
+  Scenario: Verify Publish Confirmation Page On Preview Click on Node Creation Page
+    Given I login to the site as valid user
+    When I clicked on "Post Project" link
+    And I select "Automation" from "Category" dropdown
+    And I select "Not Sure" option from Budget dropdown
+    And I select "3-4 weeks" option from Duration dropdown
+    And I enter the blog title as "Test Title"
+    ##...............And I attached a "testImage" file
+    And I enter "This is a dummy text for testing" as dummy text
+    And I enter "test" as dummy tags
+    And I clicked the "Preview" button
+    Then I should redirect to Publish Confirmation Page
+    And Publish Confirmation Page should have "Home<< FindProjects<< Automation" breadcrumb
+    And Publish Confirmation Page should have the following fields
+      | Publish Button     |
+      | Back button        |
+      | Publish Tenure day |
+      | Hiring Open        |
+#      | User Id Link       |
+      | Comments Section   |
+    And Publish Confirmation Page should have blog title as "Test Title"
+    And Publish Confirmation Page should have Duration as "3-4 weeks"
+    And Publish Confirmation Page should have Budget as "Not Sure"
+    And Publish Confirmation Page should have text as "This is a dummy text for testing"
+    And Publish Confirmation Page should have tags as "Test"
+    And This is the end of testcase

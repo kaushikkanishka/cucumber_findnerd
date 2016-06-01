@@ -26,5 +26,13 @@ class Base
     self
   end
 
-
+  def attach_blog_file(filename)
+    @session.within_frame 'mainiframe' do
+      @session.find('#last').click
+      sleep 5
+      @session.attach_file('uploader', File.absolute_path('/home/kanishka/Documents/testImage.png'))
+      end
+    sleep 3
+    self
+  end
 end
