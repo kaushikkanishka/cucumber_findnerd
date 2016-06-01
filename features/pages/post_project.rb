@@ -120,4 +120,60 @@ class PostProject < Base
       end
     self
   end
+
+  def select_category_from_dropdown(option)
+    @session.within_frame 'mainiframe' do
+    @session.select option, :from=> 'node_category_id'
+    end
+    self
+  end
+
+  def enter_blog_title(blog_title)
+
+    @session.within_frame 'mainiframe' do
+    @session.fill_in 'node_title', :with=> blog_title
+    end
+    self
+  end
+
+  def enter_blog_content(dummy_text)
+    jq = "$(\"#mainiframe\").contents().find('.cke_wysiwyg_frame').contents().find('html').find('.cke_contents_ltr');"
+    text = @session.evaluate_script(jq)
+    @session.within_frame 'mainiframe' do
+      @session.within_frame(@session.find('.cke_wysiwyg_frame')) do
+        text['0'].send_keys(dummy_text)
+      end
+    end
+    self
+  end
+
+  def enter_blog_tags(dummy_tags)
+    @session.within_frame 'mainiframe' do
+    @session.fill_in 'tag', :with=> dummy_tags
+    @session.find('#tag').native.send_keys(:tab)
+    end
+    self
+  end
+
+  def click_preview_button
+    @session.within_frame 'mainiframe' do
+    @session.find('#previewContent').click
+    end
+    PublishConfirmationPage.new(@session)
+  end
+
+  def select_duration_value(duration_value)
+    @session.within_frame 'mainiframe' do
+      @session.select duration_value, :from=> 'node_estimatedduration_id'
+    end
+    self
+  end
+
+  def select_budget_value(budget_value)
+    @session.within_frame 'mainiframe' do
+      @session.select budget_value, :from=> 'node_estimatedbudget_id'
+    end
+    self
+  end
+
 end

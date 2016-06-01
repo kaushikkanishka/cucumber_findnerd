@@ -11,3 +11,6 @@ cucumber --tags @TC001,@TC006
 sudo /etc/init.d/jenkins start
 http://localhost:8080/jenkins
 /var/lib/jenkins/secrets/initialAdminPassword
+
+#Generate Reports
+cucumber --tags @sanity features --format html --out reports
