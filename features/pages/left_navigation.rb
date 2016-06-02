@@ -18,9 +18,13 @@ class LeftNavigation < Base
     content = ".postTechJob.myContent.shiftingRight.subMenuList"
     @session.find(content).hover
     @session.find(:xpath, "//*[@class='askTech' and @title = 'Draft']").click
-    @session.within_frame 'mainiframe' do
-      @session.find('.span4:first-child > .itemContent > h4 > a').click
-    end
-    PublishConfirmationPage.new(@session)
+    Draft.new(@session)
+  end
+
+  def click_published_link
+    content = ".postBlogsTech.myContent.active"
+    @session.find(content).hover
+    @session.find('.list-content>li:first-child>a').click
+    PublishNodePage.new(@session)
   end
 end

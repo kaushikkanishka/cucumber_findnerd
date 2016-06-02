@@ -31,7 +31,6 @@ end
 
 When(/^I clicked on "Post Project" link$/) do
   @page = @navi.click_post_project_link
-  #@page = @navi.click_draft_link
 end
 
 And(/^I open the email$/) do
@@ -47,4 +46,8 @@ end
 
 And(/^I attached a "([^"]*)" file$/) do |filename|
   @page = @page.attach_blog_file(filename)
+end
+
+When(/^I clicked on Draft link$/) do
+  @page = @navi.click_draft_link
 end

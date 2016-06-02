@@ -83,4 +83,13 @@ class PublishConfirmationPage < Base
     end
     self
   end
+
+  def click_publish_button
+    @session.within_frame 'mainiframe' do
+      @session.find(:xpath, "//*[@id='blog8']//div[@class='itemOptions'][1]//a[@id='publish']").click
+    end
+    PublishNodePage.new(@session)
+  end
+
+
 end

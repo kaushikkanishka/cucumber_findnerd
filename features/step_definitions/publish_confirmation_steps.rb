@@ -31,3 +31,7 @@ end
 And(/^Publish Confirmation Page should have tags as "([^"]*)"$/) do |tags|
   @page = @page.assert_project_tags(tags)
 end
+
+And(/^I clicked "Publish" button$/) do
+  @page = @page.click_publish_button
+end
