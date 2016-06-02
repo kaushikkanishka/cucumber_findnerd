@@ -27,7 +27,7 @@ Feature:
 
     Examples:
       | Username | Password |
-      | qapeter   | 123456 |
+      | xxxxxxx   | xxxxxxx |
 
  #Log In through Social Media Button LinkedIn
   @TC008 @main @sanity @critical @signin @positive @regression
@@ -46,7 +46,7 @@ Feature:
 
     Examples:
       | LinkedIn_username     | LinkedIn_password |
-      | evontech587@gmail.com | evontech_587      |
+      | xxxxxxx@gmail.com | xxxxxxxxxx      |
 
  #Verify the browse users functionality
   @TC010 @main @sanity @positive @medium @regression
@@ -124,4 +124,19 @@ Feature:
     And Publish Confirmation Page should have Budget as "Not Sure"
     And Publish Confirmation Page should have text as "This is a dummy text for testing"
     And Publish Confirmation Page should have tags as "Test"
+    And This is the end of testcase
+
+#Verify the Publish button Functionality
+  @TC013 @main @sanity @regression @positive
+  Scenario: Verify the Publish button Functionality in Publish Confirmation page Node (Post a Tech Job) already Created
+
+    Given I login to the site as valid user
+    When I clicked on Draft link
+    And I clicked the recently created project
+    And I clicked "Publish" button
+    Then I should be see the following message
+      |You have successfully published your post. Waiting for admin approval. Click here to continue.|
+    And Publish & Back buttons should disappear
+    And Post/Node should be submitted to admin approval/rejection
+    And Post should be displayed under "My Content>>Published Page"
     And This is the end of testcase
