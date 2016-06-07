@@ -6,12 +6,12 @@ Feature:
 
     Given I am at Home Page
     Then User should be able to see the following links
-      |Findnerd Logo|
-      |Nerd Digest|
-      |Tech QnA|
-      |Find Projects|
-      |Sign In|
-      |Register|
+      | Findnerd Logo |
+      | Nerd Digest   |
+      | Tech QnA      |
+      | Find Projects |
+      | Sign In       |
+      | Register      |
 
  #Verify the Signin Functionality through Global Header
   @TC006 @main @sanity @signin @medium @positive @regression
@@ -27,7 +27,7 @@ Feature:
 
     Examples:
       | Username | Password |
-      | xxxxxxx   | xxxxxxx |
+      | xxxxxxx  | xxxxxxx  |
 
  #Log In through Social Media Button LinkedIn
   @TC008 @main @sanity @critical @signin @positive @regression
@@ -45,14 +45,14 @@ Feature:
     And This is the end of testcase
 
     Examples:
-      | LinkedIn_username     | LinkedIn_password |
-      | xxxxxxx@gmail.com | xxxxxxxxxx      |
+      | LinkedIn_username | LinkedIn_password |
+      | xxxxxxx@gmail.com | xxxxxxxxxx        |
 
  #Verify the browse users functionality
   @TC010 @main @sanity @positive @medium @regression
   Scenario: Browse Users
 
-    Given I login to the site as valid user
+    Given I login to the site as "Normal User"
     When I clicked on "Browse Nerds" link
     And I searched "Kanishka Kaushik" as user
     Then User Id with Image should be displayed
@@ -63,7 +63,7 @@ Feature:
  #Fields in Post a Tech Job
   @TC011 @main @sanity @positive @medium @regression
   Scenario: Verify the fields in Post a Tech Job
-    Given I login to the site as valid user
+    Given I login to the site as "Normal User"
     When I clicked on "Post Project" link
     Then I should see the following on Post Project page
       | Hire a freelancer or Tech team!                                          |
@@ -100,7 +100,7 @@ Feature:
  #Verify blog publish functionality
   @TC012 @main @sanity @regression @positive
   Scenario: Verify Publish Confirmation Page On Preview Click on Node Creation Page
-    Given I login to the site as valid user
+    Given I login to the site as "Normal User"
     When I clicked on "Post Project" link
     And I select "Automation" from "Category" dropdown
     And I select "Not Sure" option from Budget dropdown
@@ -130,13 +130,64 @@ Feature:
   @TC013 @main @sanity @regression @positive
   Scenario: Verify the Publish button Functionality in Publish Confirmation page Node (Post a Tech Job) already Created
 
-    Given I login to the site as valid user
+    Given I login to the site as "Normal User"
     When I clicked on Draft link
     And I clicked the recently created project
     And I clicked "Publish" button
     Then I should be see the following message
-      |You have successfully published your post. Waiting for admin approval. Click here to continue.|
+      | You have successfully published your post. Waiting for admin approval. Click here to continue. |
     And Publish & Back buttons should disappear
     And Post/Node should be submitted to admin approval/rejection
     And Post should be displayed under "My Content>>Published Page"
     And This is the end of testcase
+
+#Verify Manage Company Link with its content
+  @TC016 @main @sanity @regression @positive
+  Scenario: Verify Company Profile Information and Address section
+    Given I login to the site as "Company Admin"
+    And I clicked on "Edit Company Profile" link
+    Then I should land on "Company Profile" page
+    And I should see the following Company Profile information
+      | Company Logo              |
+      | Edit Basic Profile Button |
+      | Company Title             |
+      | Company Website           |
+      | Contact Email             |
+      | Phone Number              |
+      | Company Employees count   |
+      | Company Projects count    |
+      | Company Updates count     |
+    And Company Address Section should have Add Address button & Address grid
+    And I should see the following Company Chat information
+      | Online Users Section |
+      | Message Section      |
+      | Chat Input Box       |
+    And History link should be present
+    And I should see the following fields under Employees section
+      | Search Employee Button   |
+      | Employee Profile Listing |
+      | More Button              |
+    And I should see the following fields under Profiles Section
+      | Add Completed Project Button                 |
+      | Company Profile Listing of completed project |
+      | More Button                                  |
+    And I should see the following fields under Other Information Section
+      | Edit Other Profile Information button |
+      | About us                              |
+      | Company Summary                       |
+    And I should see the following information under Financial Information Section
+      | Amount in $ for Balance        |
+      | Amount in $ for Pending Credit |
+      | Amount in $ for Safe Balance   |
+    And I should see Company Transaction History Section on clicking Company Dashboard link
+    And I should see the following fields under Company Activity Updates section
+      | Activity Input box   |
+      | Overlay Content      |
+#      | Status Group Section |
+    And I should see the following under Profile Files Section
+      | Record /Upload Button |
+      | Video Section         |
+      | Images                |
+      | Others Files          |
+      | Video Files           |
+    And This is the end of testcase    

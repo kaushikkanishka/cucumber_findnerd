@@ -59,3 +59,15 @@ Then(/^Following message is displayed on clicking "Reset Password" button$/) do 
     @page = @page.assert_forgot_password_message(message)
   end
 end
+
+Given(/I login to the site as "(.*)"/) do |user_key|
+  @page = Homepage.new @session
+  array = @page.fetch_username_password(user_key)
+  @username = array[0].strip
+  @password = array[1].strip
+  @page = @page.open_site
+  @page = @page.click_signin_link
+  @page = @page.enter_login_username(@username)
+  @page = @page.enter_login_password(@password)
+  @page, @navi, @email1 = @page.click_signin_button
+end

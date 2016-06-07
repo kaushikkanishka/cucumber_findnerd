@@ -26,6 +26,20 @@ class Base
     self
   end
 
+  def browser_back_button
+    @session.evaluate_script('window.history.back()')
+    self
+  end
+
+  def read_config(user_key)
+    config = YAML.load_file(File.dirname(__FILE__) + '/../../lib/login_config.yml')
+    config[ENV['ENVIRONMENT']][user_key]
+  end
+
+  def fetch_username_password(user_key_from_login_config)
+    read_config(user_key_from_login_config).split('~')
+  end
+
   def attach_blog_file(filename)
     @session.within_frame 'mainiframe' do
       @session.find('#last').click
