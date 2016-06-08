@@ -7,46 +7,41 @@ class PostProject < Base
     @session.within_frame 'mainiframe' do
     case table
       when 'Hire a freelancer or Tech team!'
-        expect(@session).to(have_css('.techQuery>h2', text: 'Hire a freelancer or Tech team!'))
+        expect(@session).to(have_xpath("//*[@class='techQuery']/h2[contains(text(), 'Hire a freelancer')]"))
       when 'Get instant applications from our database of companies and freelancers.'
-        a = 'Get instant applications from our database of companies and freelancers.'
-        expect(@session).to(have_css('.techQuery>p'), text: a)
+        # a = 'Get instant applications from our database of companies and freelancers.'
+        expect(@session).to(have_xpath("//*[@class='techQuery']/p[contains(text(), 'Get instant applications')]"))
       when 'Post your requirements.'
-        expect(@session).to(have_css('.techQuery>ul>li:nth-child(1)'), text: 'Post your requirements.')
+        expect(@session).to(have_xpath("//*[@class='techQuery']/ul/li[contains(text(), 'Post your requirements')]"))
       when 'Select teams based on our revolutionary ranking algorithm.'
-        b = 'Select teams based on our revolutionary ranking algorithm.'
-        expect(@session).to(have_css('.techQuery>ul>li:nth-child(2)'), text: b)
+        # b = 'Select teams based on our revolutionary ranking algorithm.'
+        expect(@session).to(have_xpath("//*[@class='techQuery']/ul/li[contains(text(), 'teams based on our revolutionary')]"))
       when 'Manage project sprint, task, bugs through our PM tool.'
-        c = 'Manage project sprint, task, bugs through our PM tool.'
-        expect(@session).to(have_css('.techQuery>ul>li:nth-child(3)'), text: c)
+        expect(@session).to(have_xpath("//*[@class='techQuery']/ul/li[contains(text(), 'Manage project sprint')]"))
       when 'Manage Team members & Improve productivity using our session tracker.'
-        d = 'Manage Team members & Improve productivity using our session tracker.'
-        expect(@session).to(have_css('.techQuery>ul>li:nth-child(4)'), text: d)
+        expect(@session).to(have_xpath("//*[@class='techQuery']/ul/li[contains(text(), 'Manage Team members')]"))
       when 'Pay them through safe pay.'
-        e = 'Pay them through safe pay.'
-        expect(@session).to(have_css('.techQuery>ul>li:nth-child(5)'), text: e)
+        expect(@session).to(have_xpath("//*[@class='techQuery']/ul/li[contains(text(), 'Pay them through safe pay')]"))
       when 'All of the above @ 0 cost for the first 100 projects.'
-        f = 'All of the above @ 0 cost for the first 100 projects.'
-        expect(@session).to(have_css('.techQuery>ul>li:nth-child(6)'), text: f)
+        expect(@session).to(have_xpath("//*[@class='techQuery']/ul/li[contains(text(), 'first 100 projects')]"))
       when 'Title'
-        expect(@session).to(have_css('.fields.clearfix>label'), text: 'Title')
+        expect(@session).to(have_xpath("//*[@class='fields clearfix']/label[contains(@for,'node_title')]"))
       when 'Testing Help icon '
         expect(@session).to(have_css('.helpIcon'))
       when 'Attach Files, Zip etc'
-        expect(@session).to(have_css('#last>span'), text: 'Attach')
+        expect(@session).to(have_xpath("//*[@id='last']/span[contains(text(),'Attach')]"))
       when 'Record From Desktop '
-        expect(@session).to(have_css('#middle>span'), text: 'Record')
+        expect(@session).to(have_xpath("//*[@id='middle']/span[contains(text(),'Record')]"))
       when 'Record From Webcam'
-        expect(@session).to(have_css('#first>strong'), text: 'From Webcam')
+        expect(@session).to(have_xpath("//*[@id='first']/span[contains(text(),'Record')]"))
       when 'Preview Area'
         expect(@session).to(have_css('#wmd-preview'))
       when 'Tags'
         expect(@session).to(have_css('#as-selections-tag'))
       when 'You can create new content after 2 minutes gap of last created content.'
-        g = '* You can create new content after 2 minutes gap of last created content.'
-        expect(@session).to(have_css('#data_err'), text: g.strip)
+        expect(@session).to(have_xpath("//*[@id='data_err'][contains(text(),'create new content after 2 minutes')]"))
       when 'Preview Button'
-        expect(@session).to(have_css('#previewContent'), text: 'Preview')
+        expect(@session).to(have_css('#previewContent'))
       when 'Budget'
         expect(@session).to(have_css('#node_estimatedbudget_id'))
       when 'Duration'
@@ -62,7 +57,7 @@ class PostProject < Base
 
   def assert_category_dropdown_default_value
     @session.within_frame 'mainiframe' do
-    expect(@session).to(have_css('#node_category_id>option:nth-child(1)'), text: 'Select Category')
+    expect(@session).to(have_xpath("//*[@id='node_category_id']/option[1][contains(text(),'Select Category')]"))
     self
       end
   end
@@ -84,7 +79,6 @@ class PostProject < Base
   def assert_company_status_information(value)
     case value
       when 'Our team with No. of developers'
-        puts "Session inside case2: #{@session}"
         assert_developers_count
       when 'Who we work with No. of companies'
         assert_companies_count
@@ -96,27 +90,33 @@ class PostProject < Base
 
   def assert_developers_count
       @session.within_frame 'mainiframe' do
-      expect(@session).to(have_css('.ourTeam>h5'), text: 'Our Team')
-      @session.find('.ourTeam>h4').is_a? Integer
-      expect(@session).to(have_css('.ourTeam>p'), text: 'Developers')
+      expect(@session).to(have_xpath("//*[@class='ourTeam']/h5[contains(text(), 'Our Team')]"))
+      dev_count = @session.find('.ourTeam>h4').text.strip
+      is_numeric = true if Float(dev_count) rescue false
+      expect(is_numeric).to be(true)
+      expect(@session).to(have_xpath("//*[@class='ourTeam']/p[contains(text(), 'Developers')]"))
       end
     self
   end
 
   def assert_companies_count
       @session.within_frame 'mainiframe' do
-      expect(@session).to(have_css('.whoWeWorkWith>h5'), text: 'Who we work with')
-      @session.find('.whoWeWorkWith>h4').is_a? Integer
-      expect(@session).to(have_css('.whoWeWorkWith>p'), text: 'Companies')
+      expect(@session).to(have_xpath("//*[@class='whoWeWorkWith']/h5[contains(text(), 'Who we work with')]"))
+      company_count = @session.find('.whoWeWorkWith>h4').text
+      is_numeric = true if Float(company_count) rescue false
+      expect(is_numeric).to be(true)
+      expect(@session).to(have_xpath("//*[@class='whoWeWorkWith']/p[contains(text(), 'Companies')]"))
       end
     self
   end
 
   def assert_projects_count
       @session.within_frame 'mainiframe' do
-      expect(@session).to(have_css('.ourWork>h5'), text: 'Our Work')
-      @session.find('.ourWork>h4').is_a? Integer
-      expect(@session).to(have_css('.ourWork>p'), text: 'Projects')
+      expect(@session).to(have_xpath("//*[@class='ourWork']/h5[contains(text(), 'Our Work')]"))
+      proj_count = @session.find('.ourWork>h4').text
+      is_numeric = true if Float(proj_count) rescue false
+      expect(is_numeric).to be(true)
+      expect(@session).to(have_xpath("//*[@class='ourWork']/p[contains(text(), 'Projects')]"))
       end
     self
   end

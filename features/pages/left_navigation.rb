@@ -27,4 +27,11 @@ class LeftNavigation < Base
     @session.find('.list-content>li:first-child>a').click
     PublishNodePage.new(@session)
   end
+
+  def edit_company_profile_link
+    content = '.manageCompany.shiftingRight.subMenuList'
+    @session.find(content).hover
+    @session.find('.list-content>li:first-child>a').click
+    CompanyProfile.new(@session)
+  end
 end
