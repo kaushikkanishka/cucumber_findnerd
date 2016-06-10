@@ -13,3 +13,8 @@ end
 And(/^I clicked on "Edit Company Profile" link$/) do
   @page = @navi.edit_company_profile_link
 end
+
+When(/^I clicked on "Company" link from left navigation$/) do
+  @page = @navi.click_company_link
+end
+

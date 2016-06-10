@@ -62,3 +62,42 @@ And(/^I should see the following under Profile Files Section$/) do |table|
     @page = @page.assert_profile_files_section(fields)
   end
 end
+
+And(/^I enter message (.*) in the Chat Area$/) do |message|
+  @message = message
+  @page = @page.enter_chat_message(@message)
+end
+
+Then(/^I should see the User Profile image and User ID in message section$/) do
+  @page = @page.assert_chat_user_profile_image
+  @page = @page.assert_chat_user_id
+end
+
+And(/^I should see "([^"]*)" as the chat text$/) do |arg|
+  @page = @page.assert_send_chat_message(arg)
+end
+
+And(/^I should see "([^"]*)" for the instantly send message$/) do |arg|
+  @page = @page.assert_instant_message_time(arg)
+end
+
+
+When(/^I again send (.*) as chat message$/) do |arg|
+  step "I enter message #{arg} in the Chat Area"
+end
+
+Then(/^I should see "\(x\) second\(s\) ago" for the previous chat message$/) do
+  @page = @page.assert_previous_chat_message
+end
+
+And(/^Chat text "([^"]*)" should be displayed to all Users involved in the online Chat$/) do |arg|
+  step "This is the end of testcase"
+  step "I login to the site as '#{Other Normal User}'"
+  step "I clicked on 'Company' link from left navigation"
+  step "I should see '#{arg}' as the chat text"
+
+end
+
+And(/^User should be navigated to User Profile page on clicking the user\-id$/) do
+  @page = @page.click_chat_user_id
+end
