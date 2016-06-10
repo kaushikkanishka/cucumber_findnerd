@@ -98,7 +98,7 @@ Feature:
     And This is the end of testcase
 
  #Verify blog publish functionality
-  @TC012 @main @sanity @regression @positive
+  @TC012 @main @sanity @regression @positive @high
   Scenario: Verify Publish Confirmation Page On Preview Click on Node Creation Page
     Given I login to the site as "Normal User"
     When I clicked on "Post Project" link
@@ -127,7 +127,7 @@ Feature:
     And This is the end of testcase
 
 #Verify the Publish button Functionality
-  @TC013 @main @sanity @regression @positive
+  @TC013 @main @sanity @regression @positive @high
   Scenario: Verify the Publish button Functionality in Publish Confirmation page Node (Post a Tech Job) already Created
 
     Given I login to the site as "Normal User"
@@ -142,7 +142,7 @@ Feature:
     And This is the end of testcase
 
 #Verify Manage Company Link with its content
-  @TC016 @main @sanity @regression @positive
+  @TC016 @main @sanity @regression @positive @medium
   Scenario: Verify Company Profile Information and Address section
     Given I login to the site as "Company Admin"
     And I clicked on "Edit Company Profile" link
@@ -190,4 +190,19 @@ Feature:
       | Images                |
       | Others Files          |
       | Video Files           |
+    And This is the end of testcase
+
+#Verify the Company Chat Section
+  @TC018 @main @sanity @regression @positive @medium
+  Scenario: Verify the Company Chat Section (For Public Profile Or View Profile of the Company Page)
+    Given I login to the site as "Normal User"
+    When I clicked on "Company" link from left navigation
+    And I enter message "Dummy Chat message" in the Chat Area
+    Then I should see the User Profile image and User ID in message section
+    And I should see "Dummy Chat message" as the chat text
+    And I should see "just now" for the instantly send message
+    When I again send "New Dummy Chat message" as chat message
+    Then I should see "(x) second(s) ago" for the previous chat message
+      #And Chat text "Dummy Chat message" should be displayed to all Users involved in the online Chat
+    And User should be navigated to User Profile page on clicking the user-id
     And This is the end of testcase
