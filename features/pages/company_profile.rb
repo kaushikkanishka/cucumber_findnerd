@@ -237,4 +237,18 @@ class CompanyProfile < Base
     end
     self
   end
+
+  def assert_chat_fields(fields)
+      case fields
+        when 'Online users'
+          expect(@session).to have_css('#c_73_presence')
+        when 'Message screen'
+          expect(@session).to have_xpath("//*[@class='chatconference']")
+        when 'Text field to send the message'
+          expect(@session).to have_xpath("//*[@id='c_73_conference_chatm']")
+        when 'History'
+          expect(@session).to have_xpath("//*[@class='historyBox']/a[@title='Get Room Chat History']")
+      end
+    self
+  end
 end

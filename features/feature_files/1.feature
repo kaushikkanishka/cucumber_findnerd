@@ -206,3 +206,16 @@ Feature:
       #And Chat text "Dummy Chat message" should be displayed to all Users involved in the online Chat
     And User should be navigated to User Profile page on clicking the user-id
     And This is the end of testcase
+
+#Verify Chat functionality in Company Chat Overlay
+
+  @TC019 @main @sanity @regression @positive @medium
+  Scenario: Verify Chat functionality in Company Chat Overlay
+    Given I login to the site as "Normal User"
+    When I clicked on "Company Chat" link from left navigation
+    Then I should see the following chat message fields
+      | Online users                   |
+      | Message screen                 |
+      | Text field to send the message |
+      | History                        |
+    And This is the end of testcase

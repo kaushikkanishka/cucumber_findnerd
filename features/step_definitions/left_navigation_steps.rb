@@ -18,3 +18,7 @@ When(/^I clicked on "Company" link from left navigation$/) do
   @page = @navi.click_company_link
 end
 
+
+When(/^I clicked on "Company Chat" link from left navigation$/) do
+  @page = @navi.click_company_chat_link
+end

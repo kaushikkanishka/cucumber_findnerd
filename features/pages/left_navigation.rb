@@ -39,4 +39,11 @@ class LeftNavigation < Base
     @session.find('.manageCompany.shiftingRight.subMenuList').click
     CompanyProfile.new(@session)
   end
+
+  def click_company_chat_link
+    content = '.manageCompany.shiftingRight.subMenuList'
+    @session.find(content).hover
+    @session.find('.list-content>li:nth-child(2)>a').click
+    CompanyProfile.new(@session)
+  end
 end
