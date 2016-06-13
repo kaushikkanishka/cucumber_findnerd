@@ -12,6 +12,7 @@ class Login < Base
 
   def click_signin_button
     @session.find('#user_session_submit').click
+    expect(@session).to have_css('.welcomeMsgBlock')
     detail_page = ShowDetailsPage.new(@session)
     navigation = LeftNavigation.new(@session)
     email_page = EmailTasks.new(@session)

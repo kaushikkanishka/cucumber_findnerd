@@ -101,3 +101,9 @@ end
 And(/^User should be navigated to User Profile page on clicking the user\-id$/) do
   @page = @page.click_chat_user_id
 end
+
+Then(/^I should see the following chat message fields$/) do |table|
+  table.raw.flatten.each do |fields|
+    @page = @page.assert_chat_fields(fields)
+  end
+end
