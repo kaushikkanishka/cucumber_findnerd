@@ -251,4 +251,37 @@ class CompanyProfile < Base
       end
     self
   end
+
+  def assert_add_employee_tooltip(arg)
+    @session.within_frame 'mainiframe' do
+      expect(@session.find('.addGrid.addEmployee')['title']).to eq(arg)
+    end
+    self
+  end
+
+  def click_add_employee_button
+    @session.within_frame 'mainiframe' do
+      @session.find('.addGrid.addEmployee').click
+    end
+    self
+  end
+
+  def assert_add_employee_form_title(arg)
+    @session.within_frame 'mainiframe' do
+      expect(@session.find(:xpath, "//*[@id='search_users']//h1[@class='profileHeading']").text).to eq(arg)
+    end
+    self
+  end
+
+  def assert_add_employee_form_fields(fields)
+    @session.within_frame 'mainiframe' do
+      case fields
+        when 'Search Box'
+          expect(@session).to have_css('#searchBoxCompany')
+        when 'Search Button'
+          expect(@session).to have_css('.peopleSearch')
+      end
+    end
+    self
+  end
 end
