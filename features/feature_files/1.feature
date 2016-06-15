@@ -181,8 +181,8 @@ Feature:
       | Amount in $ for Safe Balance   |
     And I should see Company Transaction History Section on clicking Company Dashboard link
     And I should see the following fields under Company Activity Updates section
-      | Activity Input box   |
-      | Overlay Content      |
+      | Activity Input box |
+      | Overlay Content    |
 #      | Status Group Section |
     And I should see the following under Profile Files Section
       | Record /Upload Button |
@@ -218,4 +218,17 @@ Feature:
       | Message screen                 |
       | Text field to send the message |
       | History                        |
+    And This is the end of testcase
+
+#Verify “Add/Remove Employee” Button in Employees Section
+  @TC020 @main @sanity @regression @positive @low
+  Scenario: Verify “Add/Remove Employee” Button in Employees Section
+
+    Given I login to the site as "Company Admin"
+    When I clicked on "Company" link from left navigation
+    Then I should see "Search Employee" tooltip on mouse hover to “Add Employee” Button
+    And I should see the form title "Search people to invite to company" on clicking the “Add Employee” Button
+    And I should see the following fields in the form
+      | Search Box    |
+      | Search Button |
     And This is the end of testcase

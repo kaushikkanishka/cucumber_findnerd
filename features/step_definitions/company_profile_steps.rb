@@ -107,3 +107,18 @@ Then(/^I should see the following chat message fields$/) do |table|
     @page = @page.assert_chat_fields(fields)
   end
 end
+
+Then(/^I should see "([^"]*)" tooltip on mouse hover to “Add Employee” Button$/) do |arg|
+  @page = @page.assert_add_employee_tooltip(arg)
+end
+
+And(/^I should see the form title "([^"]*)" on clicking the “Add Employee” Button$/) do |arg|
+  @page = @page.click_add_employee_button
+  @page = @page.assert_add_employee_form_title(arg)
+end
+
+And(/^I should see the following fields in the form$/) do |table|
+  table.raw.flatten.each do |fields|
+    @page = @page.assert_add_employee_form_fields(fields)
+  end
+end
