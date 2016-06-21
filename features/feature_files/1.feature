@@ -232,3 +232,18 @@ Feature:
       | Search Box    |
       | Search Button |
     And This is the end of testcase
+
+#Verify the status of the searched users in 'Employess' section
+  @TC021 @main @sanity @regression @positive @high
+  Scenario: Verify the status of the searched users in 'Employess' section
+
+    Given I login to the site as "Company Admin"
+    When I clicked on "Company" link from left navigation
+    And I clicked on “Add Employee” Button
+    And I enter "Andy" in the Employee search textbox
+    And I click “Search” Button on Search Form pop-up
+    Then I should see "Invite To company" tooltip for uninvited users
+    And I should see "Invitation Sent" tooltip for invitation send users
+    And I should see "Invitation Rejected" tooltip for rejected invitations
+    And I should see "Existing Employee" tooltip for existing users of company
+    And This is the end of testcase
