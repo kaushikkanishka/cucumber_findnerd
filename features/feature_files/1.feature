@@ -247,3 +247,16 @@ Feature:
     And I should see "Invitation Rejected" tooltip for rejected invitations
     And I should see "Existing Employee" tooltip for existing users of company
     And This is the end of testcase
+
+#Verify “Financial Information” Details on Company profile page
+  @TC024 @main @sanity @regression @positive @high
+  Scenario: Verify “Financial Information” Details
+
+    Given I login to the site as "Company Admin"
+    When I clicked on "Company" link from left navigation
+    Then I should see the following information under Financial Information Section
+      | Amount in $ for Balance        |
+      | Amount in $ for Pending Credit |
+      | Amount in $ for Safe Balance   |
+    And This is the end of testcase
+
