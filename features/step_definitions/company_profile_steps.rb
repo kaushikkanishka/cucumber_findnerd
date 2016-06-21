@@ -48,7 +48,9 @@ And(/^I should see the following information under Financial Information Section
 end
 
 And(/^I should see Company Transaction History Section on clicking Company Dashboard link$/) do
+  @page = @page.click_company_dashboard_link
   @page = @page.assert_company_transaction_history_section
+  @page = @page.browser_back_button
 end
 
 And(/^I should see the following fields under Company Activity Updates section$/) do |table|
@@ -150,4 +152,16 @@ end
 
 And(/^I should see "([^"]*)" tooltip for existing users of company$/) do |arg|
   @page = @page.assert_tooltip_invitation_accepted(arg)
+end
+
+Then(/^I clicked on Company Dashboard link$/) do
+  @page = @page.click_company_dashboard_link
+end
+
+And(/^I should see Transactions page by default$/) do
+  @page = @page.assert_company_transaction_history_section
+end
+
+And(/^I should see last (\d+) days transactions$/) do |arg|
+  @page = @page.assert_transaction_period(arg)
 end

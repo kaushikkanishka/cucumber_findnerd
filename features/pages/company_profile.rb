@@ -137,10 +137,16 @@ class CompanyProfile < Base
 
   def assert_company_transaction_history_section
     @session.within_frame 'mainiframe' do
-      @session.find(:xpath,"//*[@id='financialInformation']//a[@title='Company Transaction History']").click
       expect(@session).to have_xpath("//*[@id='inbox']//h2[contains(text(),'Transactions')]")
-      browser_back_button
-      sleep 3
+      #browser_back_button
+      #sleep 3
+    end
+    self
+  end
+
+  def click_company_dashboard_link
+    @session.within_frame 'mainiframe' do
+      @session.find(:xpath,"//*[@id='financialInformation']//a[@title='Company Transaction History']").click
     end
     self
   end
@@ -326,4 +332,16 @@ class CompanyProfile < Base
     end
     self
   end
+
+  def assert_transaction_period(period)
+    @session.within_frame 'mainiframe' do
+      start_date = Date.parse(@session.find('#range_date')['value'])
+      end_date = Date.parse(@session.find('#to_date')['value'])
+      days = (end_date - start_date).to_i
+      expect(days).to eq(period.to_i)
+    end
+    self
+  end
+
+
 end
