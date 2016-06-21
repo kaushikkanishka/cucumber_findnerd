@@ -122,3 +122,32 @@ And(/^I should see the following fields in the form$/) do |table|
     @page = @page.assert_add_employee_form_fields(fields)
   end
 end
+
+And(/^I clicked on “Add Employee” Button$/) do
+  @page = @page.click_add_employee_button
+end
+
+And(/^I enter "([^"]*)" in the Employee search textbox$/) do |arg|
+  @page = @page.enter_name_employee_search(arg)
+end
+
+
+And(/^I click “Search” Button on Search Form pop\-up$/) do
+  @page = @page.click_search_btn_company_search
+end
+
+Then(/^I should see "([^"]*)" tooltip for uninvited users$/) do |arg|
+  @page = @page.assert_tooltip_new_user(arg)
+end
+
+And(/^I should see "([^"]*)" tooltip for invitation send users$/) do |arg|
+  @page = @page.assert_tooltip_invitation_send(arg)
+end
+
+And(/^I should see "([^"]*)" tooltip for rejected invitations$/) do |arg|
+  @page = @page.assert_tooltip_invitation_rejected(arg)
+end
+
+And(/^I should see "([^"]*)" tooltip for existing users of company$/) do |arg|
+  @page = @page.assert_tooltip_invitation_accepted(arg)
+end

@@ -284,4 +284,46 @@ class CompanyProfile < Base
     end
     self
   end
+
+  def enter_name_employee_search(name)
+    @session.within_frame 'mainiframe' do
+      @session.find('#searchBoxCompany').set(name)
+    end
+    self
+  end
+
+  def click_search_btn_company_search
+    @session.within_frame 'mainiframe' do
+      @session.find('.peopleSearch').click
+    end
+    self
+  end
+
+  def assert_tooltip_invitation_accepted(arg)
+    @session.within_frame 'mainiframe' do
+      expect(@session.find('.existingEmployee')['title']).to eq(arg)
+    end
+    self
+  end
+
+  def assert_tooltip_invitation_rejected(arg)
+    @session.within_frame 'mainiframe' do
+      expect(@session.find('.invitecompany.rejectedcompany')['title']).to eq(arg)
+    end
+    self
+  end
+
+  def assert_tooltip_invitation_send(arg)
+    @session.within_frame 'mainiframe' do
+      expect(@session.find('.invitecompany.invitedtocompany')['title']).to eq(arg)
+    end
+    self
+  end
+
+  def assert_tooltip_new_user(arg)
+    @session.within_frame 'mainiframe' do
+      expect(@session.find(".invitecompany[title='Invite To company']")['title']).to eq(arg)
+    end
+    self
+  end
 end
