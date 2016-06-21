@@ -260,3 +260,15 @@ Feature:
       | Amount in $ for Safe Balance   |
     And This is the end of testcase
 
+#Verify “Company Dashboard” Link on Company Profile page
+  @TC025 @main @sanity @regression @positive @medium
+  Scenario: Verify “Company Dashboard” Link
+
+    Given I login to the site as "Company Admin"
+    When I clicked on "Company" link from left navigation
+    Then I clicked on Company Dashboard link
+    And I should see Transactions page by default
+    And I should see last 30 days transactions
+    And This is the end of testcase
+
+
