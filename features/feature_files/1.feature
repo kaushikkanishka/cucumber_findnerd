@@ -271,4 +271,28 @@ Feature:
     And I should see last 30 days transactions
     And This is the end of testcase
 
+#Verify “Activity Updates” on Company Profile and Workroom page
+
+  @TC026 @main @sanity @regression @positive @critical
+  Scenario: Verify “Activity Updates”
+
+    Given I login to the site as "Company Admin"
+    When I clicked on "Company" link from left navigation
+    And I entered "Dummy update for testing" in company activity section
+    And I uploaded a test image
+    And I entered "www.testtest.com" in link textbox
+    And I clicked Activity Update send button
+    Then I should see "Dummy update for testing" in Activity Update Section
+    And The Posted activity should contain following items
+      | Company logo          |
+      | User Id Link          |
+      | Message               |
+      | Show and Hide Details |
+      | Reply Button          |
+      | Delete Button         |
+      | Favorite Button       |
+      | Tenure                |
+      | Hide Status Updates   |
+    And I should also see update on Workroom page under Company Updates
+    And This is the end of testcase
 
