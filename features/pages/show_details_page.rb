@@ -11,6 +11,21 @@ class ShowDetailsPage < Base
     self
   end
 
+  def click_company_updates
+    @session.within_frame 'mainiframe' do
+      @session.find(:xpath, "//*[@class='nav nav-tabs']//li/a[contains(text(),'Company Updates')]").click
+    end
+    self
+  end
+
+  def assert_message_company_updates_tab(text)
+    @session.within_frame 'mainiframe' do
+      a = "//*[@class='userprofilecover']/div[1]//div[@class='statusMessage']"
+      expect(@session.find(:xpath, a).text.strip).to eq(text)
+    end
+    self
+  end
+
 
   # def open_reset_pwd_email()
   #   gmail = Gmail.connect('qatest.kkaushik','Computer10')

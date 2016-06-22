@@ -61,3 +61,7 @@ end
 After do |_scenario|
   @session.current_window.close
 end
+
+Before('@TC026') do
+  @activity_update_text = "Dummy update for testing"
+end

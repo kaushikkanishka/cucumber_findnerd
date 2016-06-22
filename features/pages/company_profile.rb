@@ -343,5 +343,102 @@ class CompanyProfile < Base
     self
   end
 
+  def enter_activity_text(arg)
+    @session.within_frame 'mainiframe' do
+      @session.find('#statusbox').click
+      @session.find('#statusbox').set(arg)
+      sleep 10
+    end
+    self
+  end
+
+  def image_upload_company_profile
+    @session.within_frame 'mainiframe' do
+      @session.within_frame 'activityUpload' do
+        @session.find('#file-input').click
+        @session.attach_file('file-input', File.absolute_path('/home/kanishka/Documents/testImage.png'))
+      end
+    end
+    self
+  end
+
+  def upload_link_company_profile(arg)
+    @session.within_frame 'mainiframe' do
+      @session.find('#addLinkInput').set("http://#{arg}")
+    end
+    self
+  end
+
+  def click_upload_link_company_profile
+    @session.within_frame 'mainiframe' do
+      @session.within_frame 'activityUpload' do
+        @session.find('.linkUrl').click
+      end
+    end
+    self
+  end
+
+  def company_profile_submit_link_btn
+    @session.within_frame 'mainiframe' do
+      @session.find('#doneAddLink').click
+    end
+    self
+  end
+
+  def click_activity_update_send_button
+    @session.within_frame 'mainiframe' do
+      @session.within_frame 'activityUpload' do
+        @session.find('#sendButton').click
+      end
+    end
+    self
+  end
+
+  def assert_activity_update_items(item)
+    @session.within_frame 'mainiframe' do
+      case item
+        when 'Company logo'
+          expect(@session).to have_xpath("//*[@id='statusUpdates_0']/div[1]/div[@class='userBox']/img")
+        when 'User Id Link'
+          xpath = "//*[@id='statusUpdates_0']/div[1]/div[@class='statusRight']//a[@itemprop='creator']"
+          expect(@session).to have_xpath(xpath)
+        when 'Message'
+          message_xpath = "//*[@id='statusUpdates_0']/div[1]/div[@class='statusRight']//div[@class='statusMessage']"
+          expect(@session).to have_xpath(message_xpath)
+        when 'Show and Hide Details'
+          expand1 = "ul[@class='statusLinks statusFields']//a[@class='statusExpand']"
+          expand = "//*[@id='statusUpdates_0']/div[1]/div[@class='statusRight']//#{expand1}"
+          expect(@session).to have_xpath(expand)
+        when 'Reply Button'
+          reply1 = "ul[@class='statusLinks statusFields']//a[@class='statusReply']"
+          reply = "//*[@id='statusUpdates_0']/div[1]/div[@class='statusRight']//#{reply1}"
+          expect(@session).to have_xpath(reply)
+        when 'Delete Button'
+          delete1 = "ul[@class='statusLinks statusFields']//a[@class='statusDelete']"
+          delete = "//*[@id='statusUpdates_0']/div[1]/div[@class='statusRight']//#{delete1}"
+          expect(@session).to have_xpath(delete)
+        when 'Favorite Button'
+          fav1 = "ul[@class='statusLinks statusFields']//a[@class='statusFavourite']"
+          fav = "//*[@id='statusUpdates_0']/div[1]/div[@class='statusRight']//#{fav1}"
+          expect(@session).to have_xpath(fav)
+        when 'Tenure'
+          tenure = "//*[@id='statusUpdates_0']/div[4]/div[@class='statusRight']//span[@class='statusTimeDiff timeAgo']"
+          expect(@session).to have_xpath(tenure)
+        when 'Hide Status Updates'
+          expect(@session).to have_css('#statuses_0')
+      end
+    end
+    ShowDetailsPage.new(@session)
+  end
+
+  def assert_msg_activity_update_section(text)
+    @session.within_frame 'mainiframe' do
+      msg = "//*[@id='statusUpdates_0']/div[1]/div[@class='statusRight']//div[@class='statusMessage']"
+      expect(@session.find(:xpath, msg).text.strip).to eq(text.strip)
+    end
+    self
+  end
+
+
 
 end

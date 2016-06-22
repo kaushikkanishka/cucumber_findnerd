@@ -165,3 +165,31 @@ end
 And(/^I should see last (\d+) days transactions$/) do |arg|
   @page = @page.assert_transaction_period(arg)
 end
+
+And(/^I entered "Dummy update for testing" in company activity section$/) do
+  @page = @page.enter_activity_text(@activity_update_text)
+end
+
+And(/^I uploaded a test image$/) do
+  @page = @page.image_upload_company_profile
+end
+
+And(/^I entered "([^"]*)" in link textbox$/) do |arg|
+  @page = @page.click_upload_link_company_profile
+  @page = @page.upload_link_company_profile(arg)
+  @page = @page.company_profile_submit_link_btn
+end
+
+And(/^I clicked Activity Update send button$/) do
+  @page = @page.click_activity_update_send_button
+end
+
+And(/^The Posted activity should contain following items$/) do |table|
+  table.raw.flatten.each do |item|
+    @page = @page.assert_activity_update_items(item)
+  end
+end
+
+Then(/^I should see "Dummy update for testing" in Activity Update Section$/) do
+  @page = @page.assert_msg_activity_update_section(@activity_update_text)
+end
