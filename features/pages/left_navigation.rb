@@ -10,7 +10,6 @@ class LeftNavigation < Base
 
   def click_post_project_link
     @session.find('.recordDesktopShare.postProjects.shiftingRight', text: 'Post Project').click
-    #sleep 10
     PostProject.new(@session)
   end
 
@@ -52,5 +51,10 @@ class LeftNavigation < Base
     @session.find(:xpath, content).hover
     @session.find(:xpath, "//*[@class='list-content']/li/a[contains(text(),'Report')]").click
     Reports.new(@session)
+  end
+
+  def click_record_share_link
+    @session.find(:xpath, "//*[@class='recordDesktopShare shiftingRight'][@title='Record & Share']").click
+    RecordAndShare.new(@session)
   end
 end
