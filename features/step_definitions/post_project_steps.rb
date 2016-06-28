@@ -1,6 +1,6 @@
 
 
-Then(/^I should see the following on Post Project page$/) do |table|
+Then(/^I should see the following on the page$/) do |table|
   table.raw.flatten.each do |text|
     @page = @page.assert_post_project_elements(text)
   end

@@ -27,3 +27,7 @@ end
 When(/^I clicked on "Manage Reports" link from left navigation$/) do
   @page = @navi.click_manage_reports_link
 end
+
+When(/^I clicked on "Record & Share" link$/) do
+  @page = @navi.click_record_share_link
+end
