@@ -55,6 +55,8 @@ class LeftNavigation < Base
 
   def click_record_share_link
     @session.find(:xpath, "//*[@class='recordDesktopShare shiftingRight'][@title='Record & Share']").click
-    RecordAndShare.new(@session)
+    record_share = RecordAndShare.new(@session)
+    post_project = PostProject.new(@session)
+    [record_share, post_project]
   end
 end

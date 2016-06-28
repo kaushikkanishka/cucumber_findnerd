@@ -67,3 +67,10 @@ end
 Before('@TC026') do
   @activity_update_text = "Dummy update for testing"
 end
+
+Before('@TC029') do
+  @category = "Automation"
+  @blog_title = "Test title"
+  @dummy_text = "This is a dummy text for testing"
+  @dummy_tags = "Test"
+end
