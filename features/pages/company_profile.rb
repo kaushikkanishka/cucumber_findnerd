@@ -438,7 +438,4 @@ class CompanyProfile < Base
     end
     self
   end
-
-
-
 end

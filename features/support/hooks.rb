@@ -7,6 +7,7 @@
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.timeout = 90 # instead of the default 60
     Capybara::Selenium::Driver.new(app, browser: :firefox, profile: profile, http_client: client)
+
   end
   @session = Capybara::Session.new :selenium
 # else
@@ -27,6 +28,7 @@
 
 Before do |scenario|
   @session = Capybara::Session.new :selenium
+  @session.driver.browser.manage.window.maximize
   if ENV['SCREENSHOTS'] == 'YES'
     Dir.mkdir 'tmp' unless File.exist? 'tmp'
     if scenario.respond_to?('scenario_outline')

@@ -22,3 +22,8 @@ end
 When(/^I clicked on "Company Chat" link from left navigation$/) do
   @page = @navi.click_company_chat_link
 end
+
+
+When(/^I clicked on "Manage Reports" link from left navigation$/) do
+  @page = @navi.click_manage_reports_link
+end
