@@ -296,3 +296,29 @@ Feature:
     And I should also see update on Workroom page under Company Updates
     And This is the end of testcase
 
+#Verify Company Report in Tabular View
+
+  @TC027 @main @sanity @regression @positive @high
+  Scenario: Verify Company Report in Tabular View
+
+    Given I login to the site as "Company Admin"
+    When I clicked on "Manage Reports" link from left navigation
+    And I select "2016" as Year and "Jun" as Month from calender
+    And I select "QA_TestProject_HOURLY_VIDEO" as project and employee from Employee Listing
+    Then Tabular View report should be opened by default
+    And The first row should have the following
+      | selected Month with Dark Grey Background |
+      | Date of selected month                   |
+      | Total in last                            |
+    And I should see the list of All/selected Project Members Name as title in Project Report
+    And I should see the Weekly Hours Block below the Project Member names
+    And I should see the following in the middle section of calender
+      |Date block background colour as Green for working day|
+      |Date block background colour as Grey for weekends    |
+      |Sa and Su abbreviations for weekends                 |
+      |Total effort for each block in front of Weekly Hours |
+      |Week default value should be 0.0                     |
+      |Effort Hours in every Date block with zero as default|
+    And I should see total worked hours in Right Section of Calender with default as zero
+    And This is the end of testcase
+

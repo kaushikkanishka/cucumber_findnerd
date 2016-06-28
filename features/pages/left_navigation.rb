@@ -22,16 +22,16 @@ class LeftNavigation < Base
   end
 
   def click_published_link
-    content = ".postBlogsTech.myContent.active"
-    @session.find(content).hover
-    @session.find('.list-content>li:first-child>a').click
+    content = "//*[@class='postTechJob myContent shiftingRight subMenuList']"
+    @session.find(:xpath, content).hover
+    @session.find(:xpath, "//*[@class='list-content']/li/a[contains(text(),'Published')]").click
     PublishNodePage.new(@session)
   end
 
   def edit_company_profile_link
-    content = '.manageCompany.shiftingRight.subMenuList'
-    @session.find(content).hover
-    @session.find('.list-content>li:first-child>a').click
+    content = "//*[@class='manageCompany shiftingRight subMenuList']"
+    @session.find(:xpath, content).hover
+    @session.find(:xpath, "//*[@class='list-content']/li/a[contains(text(),'Edit Company Profile')]").click
     CompanyProfile.new(@session)
   end
 
@@ -41,9 +41,16 @@ class LeftNavigation < Base
   end
 
   def click_company_chat_link
-    content = '.manageCompany.shiftingRight.subMenuList'
-    @session.find(content).hover
-    @session.find('.list-content>li:nth-child(2)>a').click
+    content = "//*[@class='manageCompany shiftingRight subMenuList']"
+    @session.find(:xpath, content).hover
+    @session.find(:xpath, "//*[@class='list-content']/li/a[contains(text(),'Company Chat')]").click
     CompanyProfile.new(@session)
+  end
+
+  def click_manage_reports_link
+    content = "//*[@class='manageCompany shiftingRight subMenuList']"
+    @session.find(:xpath, content).hover
+    @session.find(:xpath, "//*[@class='list-content']/li/a[contains(text(),'Report')]").click
+    Reports.new(@session)
   end
 end
