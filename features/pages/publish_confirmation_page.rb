@@ -102,4 +102,11 @@ class PublishConfirmationPage < Base
     PublishNodePage.new(@session)
   end
 
+  def click_publish_button_confirmation_page
+    @session.within_frame 'mainiframe' do
+      @session.find('#publish').click
+    end
+    PublishNodePage.new(@session)
+  end
+
 end
