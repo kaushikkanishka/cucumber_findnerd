@@ -42,4 +42,25 @@ class PublishNodePage < Base
     end
     self
   end
+
+  def assert_published_node_message(arg)
+    @session.within_frame 'mainiframe' do
+      expect(@session.find('.alert').text.strip).to eq(arg.strip)
+    end
+    self
+  end
+
+  def assert_element_not_present(option)
+    @session.within_frame 'mainiframe' do
+      case option
+        when 'Publish button'
+          expect(@session).not_to have_css('#publish')
+        when 'Back button'
+          expect(@session).not_to have_css('#back')
+        when 'Share via link'
+          expect(@session).not_to have_css('.shareLink')
+      end
+    end
+    self
+  end
 end

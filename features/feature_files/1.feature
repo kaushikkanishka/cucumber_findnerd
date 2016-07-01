@@ -351,3 +351,22 @@ Feature:
     And I should see the User Profile image and User ID
     And This is the end of testcase
 
+#Verify the “Creation & Publishing” of "Record Desktop & Share" node.
+
+  @TC031 @main @sanity @regression @positive @high
+  Scenario: Verify the “Creation & Publishing” of "Record Desktop & Share" node.
+
+    Given I login to the site as "Normal User"
+    When I clicked on "Record & Share" link
+    And I selected "Automation" from "Category" dropdown
+    And I enter the blog title as "Test Title"
+    And I enter "This is a dummy text for testing" as dummy text
+    And I enter "test" as dummy tags
+    And I clicked the "Preview" button
+    And I clicked "Publish" button on publish confirmation page
+    Then I should see "You have successfully published your post. Click here to continue." message
+    And I should not see the following
+      | Publish button |
+      | Back button    |
+      | Share via link |
+    And This is the end of testcase

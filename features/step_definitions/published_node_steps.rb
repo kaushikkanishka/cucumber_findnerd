@@ -17,3 +17,14 @@ And(/^Post should be displayed under "My Content>>Published Page"$/) do
   @page = @page.assert_published_project
 
 end
+
+Then(/^I should see "([^"]*)" message$/) do |arg|
+  @page = @page.assert_published_node_message(arg)
+end
+
+And(/^I should not see the following$/) do |table|
+  table.raw.flatten.each do |option|
+    @page = @page.assert_element_not_present(option)
+  end
+end
+
