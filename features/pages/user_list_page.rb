@@ -7,13 +7,11 @@ class UserListPage < Base
 
   def search_user(arg)
     @session.find('#q').set(arg)
-    sleep 5
     @session.within_frame 'mainiframe' do
       #@session.select 'u', :from => '#searchOption'
     end
-    sleep 5
+    sleep 2
     @session.find('#submitbutton').click
-    sleep 5
     self
   end
 

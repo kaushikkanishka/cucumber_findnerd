@@ -29,5 +29,5 @@ When(/^I clicked on "Manage Reports" link from left navigation$/) do
 end
 
 When(/^I clicked on "Record & Share" link$/) do
-  @page, @postproj = @navi.click_record_share_link
+  @page, @recordshare = @navi.click_record_share_link
 end

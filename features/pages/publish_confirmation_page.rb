@@ -44,6 +44,15 @@ class PublishConfirmationPage < Base
           expect(@session).to have_css('.itemStatus')
         when 'Content'
           expect(@session.find(:xpath, "//*[@class='p']/p").text.strip).to be(@dummy_text)
+        when 'Share via link text'
+          expect(@session).to have_xpath("//*[@class='shareLink'][contains(text(),'Share via link')]")
+        when 'Share it to the public text'
+          expect(@session).to have_xpath("//*[@class='shareLink'][contains(text(),'Share it to the public')]")
+        when 'Share via link link'
+          path = "//*[@class='shareLink']/following-sibling::a[contains(text(),'http://findnerd.com/list/view/')]"
+          expect(@session).to have_xpath(path)
+        when 'Voting bar'
+          expect(@session).to have_css('.itemStatus')
       end
       self
     end
@@ -72,7 +81,7 @@ class PublishConfirmationPage < Base
 
   def assert_project_content(content)
     @session.within_frame 'mainiframe' do
-      expect(@session.find(:xpath, "//*[@class='p']/p").text.strip).to eq(content)
+      expect(@session.find(:xpath, "//*[@class='linkUrl']/p").text.strip).to eq(content)
     end
     self
   end
@@ -81,7 +90,9 @@ class PublishConfirmationPage < Base
     @session.within_frame 'mainiframe' do
       expect(@session.find(:xpath, "//*[@class='tagName']/span").text.strip).to eq(tags)
     end
-    self
+    # publishConfirm = PublishConfirmationPage.new(@session)
+   self
+
   end
 
   def click_publish_button
@@ -90,6 +101,5 @@ class PublishConfirmationPage < Base
     end
     PublishNodePage.new(@session)
   end
-
 
 end

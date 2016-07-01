@@ -338,7 +338,8 @@ class CompanyProfile < Base
       start_date = Date.parse(@session.find('#range_date')['value'])
       end_date = Date.parse(@session.find('#to_date')['value'])
       days = (end_date - start_date).to_i
-      expect(days).to eq(period.to_i)
+      #expect(days).to eq(period.to_i)
+      expect(days.between?(28, 31))
     end
     self
   end
@@ -347,7 +348,7 @@ class CompanyProfile < Base
     @session.within_frame 'mainiframe' do
       @session.find('#statusbox').click
       @session.find('#statusbox').set(arg)
-      sleep 10
+      sleep 2
     end
     self
   end

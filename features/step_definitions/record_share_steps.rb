@@ -15,3 +15,8 @@ And(/^I created a node$/) do
   @page = @page.enter_blog_tags(@dummy_tags)
   @page = @page.click_preview_button
 end
+
+
+And(/^I selected "([^"]*)" from "Category" dropdown$/) do |arg1|
+  @page = @page.select_category_from_dropdown(arg1)
+end

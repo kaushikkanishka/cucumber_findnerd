@@ -28,4 +28,7 @@ end
 # end
 
 
-
+And(/^I should see the User Profile image and User ID$/) do
+  @page = @page.assert_user_profile_image
+  @page = @page.assert_user_id
+end
