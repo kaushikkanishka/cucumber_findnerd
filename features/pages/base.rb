@@ -50,4 +50,20 @@ class Base
     sleep 3
     self
   end
+
+  def assert_user_profile_image
+    @session.within_frame 'mainiframe' do
+      a = @session.find(:xpath, "//*[@class='userBox']/img")['src']
+      expect(a.length).should_not == 0
+    end
+    self
+  end
+
+  def assert_user_id
+    @session.within_frame 'mainiframe' do
+      a = @session.find(:xpath, "//*[@class='userShareCover']/a[@itemprop='creator']").text
+      expect(a.length).should_not == 0
+    end
+    self
+  end
 end

@@ -27,6 +27,8 @@ end
 #   @page = @page.open_reset_pwd_email
 # end
 
-And(/^I attached a "([^"]*)" file$/) do |filename|
-  @page = @page.attach_blog_file(filename)
+
+And(/^I should see the User Profile image and User ID$/) do
+  @page = @page.assert_user_profile_image
+  @page = @page.assert_user_id
 end

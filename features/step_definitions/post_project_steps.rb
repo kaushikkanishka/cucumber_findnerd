@@ -30,6 +30,10 @@ And(/^I should see the following under "Company status Information" section$/) d
   end
 end
 
+And(/^I attached a "([^"]*)" file$/) do |filename|
+  @page = @page.attach_blog_file(filename)
+end
+
 And(/^I select "([^"]*)" from "Category" dropdown$/) do |option|
   @page = @page.select_category_from_dropdown(option)
 end

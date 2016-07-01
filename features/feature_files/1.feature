@@ -65,7 +65,7 @@ Feature:
   Scenario: Verify the fields in Post a Tech Job
     Given I login to the site as "Normal User"
     When I clicked on "Post Project" link
-    Then I should see the following on Post Project page
+    Then I should see the following on the page
       | Hire a freelancer or Tech team!                                          |
       | Get instant applications from our database of companies and freelancers. |
       | Post your requirements.                                                  |
@@ -320,5 +320,34 @@ Feature:
       |Week default value should be 0.0                     |
       |Effort Hours in every Date block with zero as default|
     And I should see total worked hours in Right Section of Calender with default as zero
+    And This is the end of testcase
+
+#Verify the Publish Confirmation Page for Node already Created
+
+  @TC030 @main @sanity @regression @positive @high
+  Scenario: Verify the Publish Confirmation Page for Node
+
+    Given I login to the site as "Normal User"
+    When I clicked on "Record & Share" link
+    And I selected "Automation" from "Category" dropdown
+    And I enter the blog title as "Test Title"
+    And I enter "This is a dummy text for testing" as dummy text
+    And I enter "test" as dummy tags
+    And I clicked the "Preview" button
+    Then I should redirect to Publish Confirmation Page
+    And Publish Confirmation Page should have the following fields
+      | Share via link text         |
+      | Share via link link         |
+      | Share it to the public text |
+      | Publish button              |
+      | Back button                 |
+      | Publish Tenure day          |
+      | Voting bar                  |
+      | Comments Section            |
+    And Publish Confirmation Page should have "Home<< FindProjects<< Automation" breadcrumb
+    And Publish Confirmation Page should have blog title as "Test Title"
+    And Publish Confirmation Page should have text as "This is a dummy text for testing"
+    And Publish Confirmation Page should have tags as "Test"
+    And I should see the User Profile image and User ID
     And This is the end of testcase
 
