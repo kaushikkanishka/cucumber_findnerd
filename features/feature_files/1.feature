@@ -386,3 +386,14 @@ Feature:
     Then I should see the node display page
     And I should see the functions similar to “Nerd Digest” page
     And This is the end of testcase
+
+#Verify the fields in Set up a new Project
+  @TC034 @main @sanity @regression @positive @low
+  Scenario: Verify the fields in Set up a new Project
+
+    Given I login to the site as "Normal User"
+    When I clicked on "My Active Projects" link
+    And I clicked on "Setup new Project" button
+    Then I should see the Text Box with "Enter Project Title" as placeholder
+    And I should see Save and Close on entering the title
+    And This is the end of testcase

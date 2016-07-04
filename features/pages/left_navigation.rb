@@ -67,4 +67,10 @@ class LeftNavigation < Base
     @session.find(:xpath, "//*[@class='list-content']/li/a[contains(text(),'Automation')]").click
     NerdDigest.new(@session)
   end
+
+  def click_active_projects_link
+    xpath = "//*[@class='recordDesktopShare activeProjects shiftingRight'][@title='My Active Projects']"
+    @session.find(:xpath, xpath).click
+    ActiveProjects.new(@session)
+  end
 end
