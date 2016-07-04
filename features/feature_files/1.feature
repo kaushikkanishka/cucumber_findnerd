@@ -370,3 +370,19 @@ Feature:
       | Back button    |
       | Share via link |
     And This is the end of testcase
+
+#Verify “Share Via link” Functionality of "Record Desktop & Share" node.
+  @TC032 @main @sanity @regression @positive @high
+  Scenario: Verify “Share Via link” Functionality of "Record Desktop & Share" node.
+
+    Given I login to the site as "Normal User"
+    When I clicked on "Record & Share" link
+    And I selected "Automation" from "Category" dropdown
+    And I enter the blog title as "Test Title"
+    And I enter "This is a dummy text for testing" as dummy text
+    And I enter "test" as dummy tags
+    And I clicked the "Preview" button
+    And I clicked the node link
+    Then I should see the node display page
+    And I should see the functions similar to “Nerd Digest” page
+    And This is the end of testcase
