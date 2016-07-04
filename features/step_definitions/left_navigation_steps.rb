@@ -31,3 +31,7 @@ end
 When(/^I clicked on "Record & Share" link$/) do
   @page, @recordshare = @navi.click_record_share_link
 end
+
+When(/^I clicked on "Automation" link$/) do
+  @page = @navi.click_automation_link
+end

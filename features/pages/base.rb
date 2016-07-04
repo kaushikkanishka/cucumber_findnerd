@@ -66,4 +66,11 @@ class Base
     end
     self
   end
+
+  def select_first_nerd
+    @session.within_frame 'mainiframe' do
+      @session.find(:xpath, "//*[@class='itemContent']/../../div[1]/div[@class='itemContent']/h4/a").click
+    end
+    self
+  end
 end

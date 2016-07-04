@@ -60,4 +60,11 @@ class LeftNavigation < Base
     record_share = RecordAndShare.new(@session)
     [post_project, record_share]
   end
+
+  def click_automation_link
+    nerdDigest = "//*[@class='learnNerdDigest shiftingRight subMenuList']"
+    @session.find(:xpath, nerdDigest).hover
+    @session.find(:xpath, "//*[@class='list-content']/li/a[contains(text(),'Automation')]").click
+    NerdDigest.new(@session)
+  end
 end

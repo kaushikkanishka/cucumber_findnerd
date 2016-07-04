@@ -32,3 +32,7 @@ And(/^I should see the User Profile image and User ID$/) do
   @page = @page.assert_user_profile_image
   @page = @page.assert_user_id
 end
+
+And(/^I select the first nerd$/) do
+  @page = @page.select_first_nerd
+end
