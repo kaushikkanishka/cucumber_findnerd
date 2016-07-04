@@ -35,3 +35,7 @@ end
 When(/^I clicked on "Automation" link$/) do
   @page = @navi.click_automation_link
 end
+
+When(/^I clicked on "My Active Projects" link$/) do
+  @page = @navi.click_active_projects_link
+end
