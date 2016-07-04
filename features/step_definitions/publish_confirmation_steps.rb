@@ -40,3 +40,7 @@ end
 And(/^I clicked "Publish" button on publish confirmation page$/) do
   @page = @page.click_publish_button_confirmation_page
 end
+
+And(/^I clicked the node link$/) do
+  @page = @page.click_node_link
+end

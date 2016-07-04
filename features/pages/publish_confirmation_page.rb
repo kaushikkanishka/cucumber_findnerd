@@ -109,4 +109,11 @@ class PublishConfirmationPage < Base
     PublishNodePage.new(@session)
   end
 
+  def click_node_link
+    @session.within_frame 'mainiframe' do
+      xpath = "//*[@class='shareLink']/following-sibling::a[contains(@href, 'http://findnerd.com/list/view/')]"
+      @session.find(:xpath, xpath).click
+    end
+    NerdDigest.new(@session)
+  end
 end
