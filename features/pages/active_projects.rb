@@ -26,4 +26,25 @@ class ActiveProjects < Base
     end
     self
   end
+
+  def enter_new_project_proj_title
+    @session.within_frame 'mainiframe' do
+      @session.find('#node_title').set('Test new Project Title')
+    end
+    self
+  end
+
+  def click_new_proj_save_btn
+    @session.within_frame 'mainiframe' do
+      @session.find('#saveContent').click
+    end
+    self
+  end
+
+  def assert_proj_dashboard
+    @session.within_frame 'mainiframe' do
+      expect(@session).to have_css('.dashboard')
+    end
+    self
+  end
 end

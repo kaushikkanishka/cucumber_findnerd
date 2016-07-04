@@ -397,3 +397,15 @@ Feature:
     Then I should see the Text Box with "Enter Project Title" as placeholder
     And I should see Save and Close on entering the title
     And This is the end of testcase
+
+#Verify the "Set up a new Project" in “Manage Projects ” Page
+  @TC035 @main @sanity @regression @positive @low
+  Scenario: Verify the "Set up a new Project" in “Manage Projects ” Page
+
+    Given I login to the site as "Normal User"
+    When I clicked on "My Active Projects" link
+    And I clicked on "Setup new Project" button
+    And I entered the Project title
+    And I clicked the Save button
+    Then I should see the Project Dashboard
+    And This is the end of testcase
