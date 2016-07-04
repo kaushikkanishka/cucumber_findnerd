@@ -409,3 +409,23 @@ Feature:
     And I clicked the Save button
     Then I should see the Project Dashboard
     And This is the end of testcase
+
+#Verify My Active Projects fields
+
+  @TC033 @main @sanity @regression @positive @medium
+  Scenario: Verify My Active Projects fields for Logged In users
+
+    Given I login to the site as "Normal User"
+    When I clicked on "My Active Projects" link
+    Then I should see My Active Project Page
+    And I should see the "Home >> Project >> Active" breadcrumb
+    And I should see the Search Box with Search Button
+    And I should see Setup a new project in "Tile Grid"
+    And I should see the following fields in the Project detail
+      | Project Title       |
+      | Meta data           |
+      | Project Description |
+      | Project Creator ID  |
+      | View Count          |
+    And Pagination for project count greater than six
+    And This is the end of testcase
