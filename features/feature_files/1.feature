@@ -502,3 +502,39 @@ Feature:
     And Post/Node should be submitted to admin approval/rejection
     And Post should be displayed under "My Content>>Published Page"
     And This is the end of testcase
+
+#Verify the fields in Ask Tech Query
+
+  @TC040 @main @sanity @regression @positive @low
+  Scenario: Verify the fields in Ask Tech Query for Loggedin users
+
+    Given I login to the site as "Normal User"
+    When I clicked on "Ask Tech Query" link
+    And I select "Automation" from "Category" dropdown
+    And I enter the blog title as "Test Query Title"
+    And I enter "This is a dummy text for testing" as dummy text
+    Then I should see the following on the page
+      | Stuck In a Tech Issue?                                                  |
+      | Our community of developers answer them for you.                        |
+      | Type your query & post the code.                                        |
+      | Record Your Desktop to explain better.                                  |
+      | Upload files.                                                           |
+      | Or Simply search through our own search engine.                         |
+      | Title                                                                   |
+      | Testing Help icon                                                       |
+      | Attach Files, Zip etc                                                   |
+      | Record From Desktop                                                     |
+      | Record From Webcam                                                      |
+      | Preview Area                                                            |
+      | Tags                                                                    |
+      | You can create new content after 2 minutes gap of last created content. |
+      | Preview Button                                                          |
+      | Featured Questions                                                      |
+      | Ask Nerds                                                               |
+    And "Select Category" option should be selected by default in "Category" dropdown
+    And I should see the following under "Company status Information" section
+      | Our team with No. of developers   |
+      | Who we work with No. of companies |
+      | Our work No. of projects          |
+    And This is the end of testcase
+
