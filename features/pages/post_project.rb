@@ -24,6 +24,20 @@ class PostProject < Base
         expect(@session).to(have_xpath("//*[@class='techQuery']/ul/li[contains(text(), 'Pay them through safe pay')]"))
       when 'All of the above @ 0 cost for the first 100 projects.'
         expect(@session).to(have_xpath("//*[@class='techQuery']/ul/li[contains(text(), 'first 100 projects')]"))
+      when 'Post Tech Blogs, Tutorials, Reviews or News.'
+        expect(@session).to have_xpath("//*[@class='techQuery']/h2[contains(text(), 'Post Tech Blogs, Tutorials')]")
+      when 'Earn reputation and improve your web wide tech rank.'
+        expect(@session).to have_xpath("//*[@class='techQuery']/p[contains(text(), 'Earn reputation and improve')]")
+      when 'Type in your tech analysis, product insights and tech solutions.'
+        expect(@session).to have_xpath("//*[@class='techQuery']//li[contains(text(), 'Type in your tech analysis')]")
+      when 'Record your Desktop for better insights.'
+        expect(@session).to have_xpath("//*[@class='techQuery']//li[contains(text(), 'Record your Desktop')]")
+      when 'Improve your nerd rank with views and positive vote.'
+        expect(@session).to have_xpath("//*[@class='techQuery']//li[contains(text(), 'Improve your nerd rank with')]")
+      when 'More likes get you on our more featured section.'
+        expect(@session).to have_xpath("//*[@class='techQuery']//li[contains(text(), 'More likes get you on')]")
+      when 'Nerd points help you engage with perspective employers and earn respect in developer community.'
+        expect(@session).to have_xpath("//*[@class='techQuery']//li[contains(text(), 'Nerd points help you engage')]")
       when 'Title'
         expect(@session).to(have_xpath("//*[@class='fields clearfix']/label[contains(@for,'node_title')]"))
       when 'Testing Help icon '

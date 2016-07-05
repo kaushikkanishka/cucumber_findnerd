@@ -16,7 +16,8 @@ class Login < Base
     detail_page = ShowDetailsPage.new(@session)
     navigation = LeftNavigation.new(@session)
     email_page = EmailTasks.new(@session)
-    [detail_page, navigation, email_page]
+    top_nav = TopNavigation.new(@session)
+    [detail_page, navigation, email_page, top_nav]
   end
 
   def enter_login_username(username1)

@@ -69,5 +69,5 @@ Given(/I login to the site as "(.*)"/) do |user_key|
   @page = @page.click_signin_link
   @page = @page.enter_login_username(@username)
   @page = @page.enter_login_password(@password)
-  @page, @navi, @email1 = @page.click_signin_button
+  @page, @navi, @email1, @top = @page.click_signin_button
 end

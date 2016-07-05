@@ -429,3 +429,34 @@ Feature:
       | View Count          |
     And Pagination for project count greater than six
     And This is the end of testcase
+
+#Verify the fields in Post Blog
+
+  @TC036 @main @sanity @regression @positive @low
+  Scenario: Verify the fields in Post Blog
+
+    Given I login to the site as "Normal User"
+    When I clicked on "Post Blog" link
+    Then I should see the following on the page
+      | Post Tech Blogs, Tutorials, Reviews or News.                                                    |
+      | Earn reputation and improve your web wide tech rank.                                            |
+      | Type in your tech analysis, product insights and tech solutions.                                |
+      | Record your Desktop for better insights.                                                        |
+      | Improve your nerd rank with views and positive vote.                                            |
+      | More likes get you on our more featured section.                                                |
+      | Nerd points help you engage with perspective employers and earn respect in developer community. |
+      | Title                                                                                           |
+      | Testing Help icon                                                                               |
+      | Attach Files, Zip etc                                                                           |
+      | Record From Desktop                                                                             |
+      | Record From Webcam                                                                              |
+      | Preview Area                                                                                    |
+      | Tags                                                                                            |
+      | You can create new content after 2 minutes gap of last created content.                         |
+      | Preview Button                                                                                  |
+    And "Select Category" option should be selected by default in "Category" dropdown
+    And I should see the following under "Company status Information" section
+      | Our team with No. of developers   |
+      | Who we work with No. of companies |
+      | Our work No. of projects          |
+    And This is the end of testcase
