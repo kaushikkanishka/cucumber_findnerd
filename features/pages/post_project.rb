@@ -38,6 +38,18 @@ class PostProject < Base
         expect(@session).to have_xpath("//*[@class='techQuery']//li[contains(text(), 'More likes get you on')]")
       when 'Nerd points help you engage with perspective employers and earn respect in developer community.'
         expect(@session).to have_xpath("//*[@class='techQuery']//li[contains(text(), 'Nerd points help you engage')]")
+      when 'Stuck In a Tech Issue?'
+        expect(@session).to have_xpath("//*[@class='techQuery']/h1[contains(text(),'Stuck In a Tech Issue')]")
+      when 'Our community of developers answer them for you.'
+        expect(@session).to have_xpath("//*[@class='techQuery']/p[contains(text(),'developers answer them for you')]")
+      when 'Type your query & post the code.'
+        expect(@session).to have_xpath("//*[@class='techQuery']//li[contains(text(),'Type your query & post the')]")
+      when 'Record Your Desktop to explain better.'
+        expect(@session).to have_xpath("//*[@class='techQuery']//li[contains(text(),'Record Your Desktop')]")
+      when 'Upload files.'
+        expect(@session).to have_xpath("//*[@class='techQuery']//li[contains(text(),'Upload files')]")
+      when 'Or Simply search through our own search engine.'
+        expect(@session).to have_xpath("//*[@class='techQuery']//li[contains(text(),'through our own search engine')]")
       when 'Title'
         expect(@session).to(have_xpath("//*[@class='fields clearfix']/label[contains(@for,'node_title')]"))
       when 'Testing Help icon '
@@ -64,6 +76,10 @@ class PostProject < Base
         expect(@session).to(have_css('#node_estimatedhour_id'))
       when 'Workload'
         expect(@session).to(have_css('#node_estimatedworkload_id'))
+      when 'Featured Questions'
+        expect(@session).to have_xpath("//*[@id='disp_questions']/ul")
+      when 'Ask Nerds'
+        expect(@session).to have_xpath("//*[@id='ask_nerds']/ul")
     end
     end
     self
