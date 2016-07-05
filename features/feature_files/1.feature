@@ -460,3 +460,30 @@ Feature:
       | Who we work with No. of companies |
       | Our work No. of projects          |
     And This is the end of testcase
+
+#Verify the Publish confirmation Page after node creation
+
+  @TC037 @main @sanity @regression @positive @high
+  Scenario: Verify the Publish confirmation Page
+
+    Given I login to the site as "Normal User"
+    When I clicked on "Post Blog" link
+    And I select "Automation" from "Category" dropdown
+    And I enter the blog title as "Test Title"
+    And I enter "This is a dummy text for testing" as dummy text
+    And I enter "test" as dummy tags
+    And I clicked the "Preview" button
+    Then I should redirect to Publish Confirmation Page
+    And Publish Confirmation Page should have "Home<< FindProjects<< Automation" breadcrumb
+    And Publish Confirmation Page should have the following fields
+      | Publish Button     |
+      | Back button        |
+      | Publish Tenure day |
+      | Voting bar         |
+      | Comments Section   |
+    And Publish Confirmation Page should have blog title as "Test Title"
+    And Publish Confirmation Page should have text as "This is a dummy text for testing"
+    And Publish Confirmation Page should have tags as "Test"
+    And I should see the User Profile image and User ID
+    And This is the end of testcase
+
