@@ -10,11 +10,16 @@ class PublishConfirmationPage < Base
     self
   end
 
-  def assert_publish_confirmation_breadcrumb(breadcrumb)
+  def assert_publish_confirmation_breadcrumb(arg)
     @session.within_frame 'mainiframe' do
-      bcrumb_last = @session.find(:xpath, ".//*[@class='breadcrumb']/li[last()]").text
-      actual_bcrumb = 'Home<< FindProjects' + bcrumb_last
-      expect(actual_bcrumb).to eq(breadcrumb)
+      # bcrumb_last = @session.find(:xpath, ".//*[@class='breadcrumb']/li[last()]").text
+      # actual_bcrumb = 'Home<< FindProjects' + bcrumb_last
+      # expect(actual_bcrumb).to eq(breadcrumb)
+      breadcrumb = Array.new
+      @session.all(:xpath, "//*[@class='breadcrumb']/li").each do |value|
+        breadcrumb.push value.text.strip
+      end
+      expect(breadcrumb.join(" ")).to eq(arg)
     end
     self
   end

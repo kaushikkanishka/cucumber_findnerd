@@ -3,9 +3,7 @@ class Base
   def open_site
     @session.visit read_url ENV['ENVIRONMENT']
     Capybara.default_max_wait_time = 30
-    base = Base.new
-    top = TopNavigation.new(@session)
-    [base, top]
+  self
   end
 
   def read_url(env)
