@@ -564,3 +564,18 @@ Feature:
     And I should see the User Profile image and User ID
     And This is the end of testcase
 
+#Verify the Publish button Functionality in Publish Confirmation page for already Created Tech Query
+
+  @TC042 @main @sanity @regression @positive @high
+  Scenario: Verify the Publish button Functionality in Publish Confirmation page Node
+
+    Given I login to the site as "Normal User"
+    When I clicked on Draft link
+    And I clicked the recently created project
+    And I clicked "Publish" button
+    Then I should be see the following message
+      | You have successfully published your post. Waiting for admin approval. Click here to continue. |
+    And Publish & Back buttons should disappear
+    And Post/Node should be submitted to admin approval/rejection
+    And Post should be displayed under "My Content>>Published Page"
+    And This is the end of testcase
