@@ -71,3 +71,7 @@ Given(/I login to the site as "(.*)"/) do |user_key|
   @page = @page.enter_login_password(@password)
   @page, @navi, @email1, @top = @page.click_signin_button
 end
+
+Then(/^Passsword should be changed and I loggedin as "([^"]*)"$/) do |arg|
+  @page = @page.assert_password_change(arg)
+end

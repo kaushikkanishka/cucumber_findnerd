@@ -29,6 +29,7 @@
 Before do |scenario|
   @session = Capybara::Session.new :selenium
   @session.driver.browser.manage.window.maximize
+  Capybara::Email::DSL
   if ENV['SCREENSHOTS'] == 'YES'
     Dir.mkdir 'tmp' unless File.exist? 'tmp'
     if scenario.respond_to?('scenario_outline')

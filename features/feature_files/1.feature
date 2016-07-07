@@ -29,6 +29,33 @@ Feature:
       | Username | Password |
       | xxxxxxx  | xxxxxxx  |
 
+ #Feature: Verify the email
+  @TC007a @main @sanity @critical @signin @positive @regression
+  Scenario: Verify Forgot Password email subject
+
+    Given I am at Home Page
+    When I clicked on SignIn link
+    And Click on “Forgot Password” link
+    And I enter email id in Forgot Password overlay
+    And I clicked on "Reset my Password" button
+    Then Following message is displayed on clicking "Reset Password" button
+      |Instructions to reset your password have been emailed to you|
+    And Email with "Password Reset Instructions" subject should be received.
+
+  @TC007b @main @sanity @critical @signin @positive @regression
+  Scenario: Verify Forgot Password functionality
+
+    Given I am at Home Page
+    When I clicked on SignIn link
+    And Click on “Forgot Password” link
+    And I enter email id in Forgot Password overlay
+    And I clicked on "Reset my Password" button
+    And Following message is displayed on clicking "Reset Password" button
+      |Instructions to reset your password have been emailed to you|
+    And I clicked "Reset Password" link on email
+    And I enter "123456" as new password
+    Then Passsword should be changed and I loggedin as "qatest.kkaushik"
+
  #Log In through Social Media Button LinkedIn
   @TC008 @main @sanity @critical @signin @positive @regression
   Scenario Outline: Sign in with LinkedIn

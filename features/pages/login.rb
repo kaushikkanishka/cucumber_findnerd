@@ -68,12 +68,14 @@ class Login < Base
 
   def enter_forgot_pwd_email(email)
     @session.fill_in 'email', with: email
-    #@session.find('#email').set(email)
-    self
+    @session.find('#email').set(email)
+     self
+    # EmailTasks.new(@session)
   end
 
   def click_reset_pwd_button
     @session.find('.btn-primary').click
+    # EmailTasks.new(@session)
     self
   end
 
@@ -83,4 +85,15 @@ class Login < Base
     EmailTasks.new(@session)
   end
 
+  def enter_new_password(arg)
+    @session.find(:xpath, "//*[@id='resetPassFrm']//input[@id='user_password']").set(arg)
+    @session.find(:xpath, "//*[@id='resetPassFrm']//input[@id='user_password_confirmation']").set(arg)
+    @session.find(:xpath, "//*[@id='resetPassFrm']//*[@id='user_submit']").click
+    self
+  end
+
+  def assert_password_change(arg)
+    expect(@session.find(:xpath, "//*[@class='welcomeMessage']//a").text.strip).to eq(arg)
+    self
+  end
 end

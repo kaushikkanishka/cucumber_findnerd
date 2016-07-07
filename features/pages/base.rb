@@ -16,8 +16,8 @@ class Base
   end
 
   def click_sign_out_link
-    @session.find('.loginArrow').click
-    @session.find('.signOutQuit>a').click
+    @session.find('.loginArrow', visible: false).click
+    @session.find('.signOutQuit>a', visible: false).click
     Homepage.new(@session)
   end
 
