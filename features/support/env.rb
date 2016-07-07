@@ -11,7 +11,6 @@ require 'capybara/email'
 require 'capybara/email/rspec'
 require 'gmail'
 require 'date'
-require 'capybara-email'
 require 'parallel_tests'
 
 #require_rel './../mixins/*.rb'
@@ -20,4 +19,6 @@ require_rel './../pages/*.rb'
 ENV['BROWSER'] ||= 'firefox'
 ENV['ENVIRONMENT'] ||= 'stage'
 ENV['SCREENSHOTS'] ||= 'NO'
+
+
 

@@ -5,31 +5,27 @@ class EmailTasks < Base
     @session = session
   end
 
-  # def open_reset_pwd_email()
-  #   gmail = Gmail.connect('qatest.kkaushik','Computer10')
-  #   puts "Messages count: #{gmail.inbox.count}"
-  #   self
-  # end
-
   def open_reset_pwd_email()
     gmail = Gmail.connect('qatest.kkaushik','Computer10')
-    sleep 3
-    puts "Messages count: #{gmail.inbox.count}"
-    a = gmail.inbox.find(:from => 'dineshmgkvp@gmail.com').last
-    puts a.message.to
-    puts a.message.body
-    puts a.message.subject
-    puts "Link: #{a.message.try_link0 'Reset Password!'}"
-    puts "Clicked link"
-    @session.open_email("qatest.kkaushik@gmail.com")
-    @session.current_email.click_link 'Reset Password!'
-    # open_email("some@gmail.com")
-    # @current_email = a.message
-
-    #current_email.click_link 'Reset Password!'
-    puts "First email: #{gmail.inbox.find(:from => 'dineshmgkvp@gmail.com').first}"
-    a
+    sleep 2
+    @a = gmail.inbox.find(:from => 'dineshmgkvp@gmail.com').last
+    # puts @a.message.to
+    # puts @a.message.body
+    @subject = @a.message.subject
+    content = @a.message.body
+    @links = content.to_s.scan(/<a.+?href="(.+?)"/).flatten[0]
+    puts "link  = #{@links}"
+    self
   end
 
+  def assert_forgot_pwd_email_subject(arg)
+    expect(@subject.strip).to eq(arg.strip)
+    self
+  end
 
+  def click_email_link
+    @session.visit @links
+    sleep 3
+    Login.new(@session)
+  end
 end
