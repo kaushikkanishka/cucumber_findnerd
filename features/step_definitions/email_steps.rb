@@ -1,14 +1,8 @@
 Then(/^I open gmail account$/) do
-  @page = @page.open_reset_pwd_email
-end
-
-And(/^I open the email from "dineshmgkvp@gmail.com"$/) do
-  @email1 = @email1.select_first_sender_email
-end
-
-
-Then(/^"([^"]*)" should see the following text$/) do |arg, text|
-  pending
+  array = @page.fetch_gmail_username_password("GmailUser")
+  gmail_username = array[0].strip
+  gmail_password = array[1].strip
+  @page = @page.open_gmail_email(gmail_username, gmail_password)
 end
 
 And(/^I clicked Reset Password link on email$/) do
@@ -21,10 +15,12 @@ And(/^I clicked "Reset Password" link on email$/) do
   @page = @page.click_email_link
 end
 
-And(/^I enter "([^"]*)" as new password$/) do |arg|
-  @page = @page.enter_new_password(arg)
+And(/^I enter the new password$/) do
+  new_password = @page.fetch_value_from_config("New_Password")
+  @page = @page.enter_new_password(new_password)
 end
 
 And(/^Email with "([^"]*)" subject should be received\.$/) do |arg|
+  step 'I open gmail account'
   @page = @page.assert_forgot_pwd_email_subject(arg)
 end

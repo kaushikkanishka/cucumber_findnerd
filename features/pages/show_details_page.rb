@@ -25,12 +25,4 @@ class ShowDetailsPage < Base
     end
     self
   end
-
-
-  # def open_reset_pwd_email()
-  #   gmail = Gmail.connect('qatest.kkaushik','Computer10')
-  #   sleep 3
-  #   puts "Messages count: #{gmail.inbox.count}"
-  #   self
-  # end
 end

@@ -5,21 +5,21 @@ class EmailTasks < Base
     @session = session
   end
 
-  def open_reset_pwd_email()
-    gmail = Gmail.connect('qatest.kkaushik','Computer10')
+  def open_gmail_email(username, password)
+    gmail = Gmail.connect(username, password)
     sleep 2
-    @a = gmail.inbox.find(:from => 'dineshmgkvp@gmail.com').last
+    sender_email = fetch_value_from_config("Sender_Mail_id")
+    @a = gmail.inbox.find(:from => sender_email).last
     # puts @a.message.to
     # puts @a.message.body
     @subject = @a.message.subject
     content = @a.message.body
     @links = content.to_s.scan(/<a.+?href="(.+?)"/).flatten[0]
-    puts "link  = #{@links}"
     self
   end
 
   def assert_forgot_pwd_email_subject(arg)
-    expect(@subject.strip).to eq(arg.strip)
+    expect(@subject).to eq(arg)
     self
   end
 

@@ -4,7 +4,7 @@ And(/^I searched "([^"]*)" as user$/) do |arg|
 end
 
 Then(/^User Id with Image should be displayed$/) do
-  @page = @page.assert_user_id(@nerd_name)
+  @page = @page.assert_user_id_from_name(@nerd_name)
 end
 
 And(/^Name of user with image should be displayed$/) do
