@@ -41,6 +41,14 @@ class Base
     read_config(user_key_from_login_config).split('~')
   end
 
+  def fetch_gmail_username_password(gmail_key_from_login_config)
+    read_config(gmail_key_from_login_config).split('~')
+  end
+
+  def fetch_value_from_config(key_from_login_config)
+    read_config(key_from_login_config)
+  end
+
   def attach_blog_file(filename)
     @session.within_frame 'mainiframe' do
       @session.find('#last').click

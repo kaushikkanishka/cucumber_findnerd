@@ -67,7 +67,7 @@ class Login < Base
   end
 
   def enter_forgot_pwd_email(email)
-    @session.fill_in 'email', with: email
+    # @session.fill_in 'email', with: email
     @session.find('#email').set(email)
      self
     # EmailTasks.new(@session)

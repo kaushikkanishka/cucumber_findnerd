@@ -26,8 +26,8 @@ Feature:
     And This is the end of testcase
 
     Examples:
-      | Username | Password |
-      | xxxxxxx  | xxxxxxx  |
+      | Username        | Password |
+      | qatest.kkaushik | 123456   |
 
  #Feature: Verify the email
   @TC007a @main @sanity @critical @signin @positive @regression
@@ -53,8 +53,8 @@ Feature:
     And Following message is displayed on clicking "Reset Password" button
       |Instructions to reset your password have been emailed to you|
     And I clicked "Reset Password" link on email
-    And I enter "123456" as new password
-    Then Passsword should be changed and I loggedin as "qatest.kkaushik"
+    And I enter the new password
+    Then Passsword should be changed and I loggedin as "GmailUser"
 
  #Log In through Social Media Button LinkedIn
   @TC008 @main @sanity @critical @signin @positive @regression
@@ -63,7 +63,6 @@ Feature:
     Given I am at Home Page
     And I clicked on SignIn link
     When I Clicked on “Sign in with LinkedIn” Button
-    #Then I switched to linkedIn Popup
     And I enter <LinkedIn_username> as username in LinkedIn overlay
     And I enter <LinkedIn_password> as password in LinkedIn overlay
     And I clicked on "Allow Access" button
@@ -72,8 +71,8 @@ Feature:
     And This is the end of testcase
 
     Examples:
-      | LinkedIn_username | LinkedIn_password |
-      | xxxxxxx@gmail.com | xxxxxxxxxx        |
+      | LinkedIn_username    | LinkedIn_password |
+      | qabrij0303@gmail.com | manola0303        |
 
  #Verify the browse users functionality
   @TC010 @main @sanity @positive @medium @regression
@@ -138,7 +137,7 @@ Feature:
     And I enter "test" as dummy tags
     And I clicked the "Preview" button
     Then I should redirect to Publish Confirmation Page
-    And Publish Confirmation Page should have "Home<< FindProjects<< Automation" breadcrumb
+    And Publish Confirmation Page should have "Home << FindProjects << Automation" breadcrumb
     And Publish Confirmation Page should have the following fields
       | Publish Button     |
       | Back button        |
@@ -371,7 +370,7 @@ Feature:
       | Publish Tenure day          |
       | Voting bar                  |
       | Comments Section            |
-    And Publish Confirmation Page should have "Home<< FindProjects<< Automation" breadcrumb
+    And Publish Confirmation Page should have "Home << FindProjects << Automation" breadcrumb
     And Publish Confirmation Page should have blog title as "Test Title"
     And Publish Confirmation Page should have text as "This is a dummy text for testing"
     And Publish Confirmation Page should have tags as "Test"
@@ -501,7 +500,7 @@ Feature:
     And I enter "test" as dummy tags
     And I clicked the "Preview" button
     Then I should redirect to Publish Confirmation Page
-    And Publish Confirmation Page should have "Home<< FindProjects<< Automation" breadcrumb
+    And Publish Confirmation Page should have "Home << FindProjects << Automation" breadcrumb
     And Publish Confirmation Page should have the following fields
       | Publish Button     |
       | Back button        |

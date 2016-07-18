@@ -16,17 +16,12 @@ And(/^I clicked on SignIn link$/) do
   @page = @page.click_signin_link
 end
 
-And(/^I open the email$/) do
-  puts @page.inspect
-  puts @email.inspect
-  @page = @email.open_reset_pwd_email()
-  #@page = @page.open_email(@forgot_pwd_email)
-end
-
-# Then(/^I open gmail account$/) do
-#   @page = @page.open_reset_pwd_email
+# And(/^I open the email$/) do
+#   puts @page.inspect
+#   puts @email.inspect
+#   @page = @email.open_email()
+#   #@page = @page.open_email(@forgot_pwd_email)
 # end
-
 
 And(/^I should see the User Profile image and User ID$/) do
   @page = @page.assert_user_profile_image

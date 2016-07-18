@@ -46,7 +46,7 @@ And(/^Click on “Forgot Password” link$/) do
 end
 
 And(/^I enter email id in Forgot Password overlay$/) do
-  @forgot_pwd_email = 'qatest.kkaushik@gmail.com'
+  @forgot_pwd_email = @page.fetch_value_from_config("Forgot_Password_User")
   @page = @page.enter_forgot_pwd_email(@forgot_pwd_email)
 end
 
@@ -73,5 +73,7 @@ Given(/I login to the site as "(.*)"/) do |user_key|
 end
 
 Then(/^Passsword should be changed and I loggedin as "([^"]*)"$/) do |arg|
-  @page = @page.assert_password_change(arg)
+  array = @page.fetch_username_password(arg)
+  @gmailusername = array[0].strip
+  @page = @page.assert_password_change(@gmailusername)
 end
