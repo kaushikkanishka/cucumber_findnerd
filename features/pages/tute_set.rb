@@ -35,4 +35,37 @@ class TuteSet < Base
     end
     self
   end
+
+  def click_tuteset_title
+    @session.within_frame 'mainiframe' do
+      tute = "//*[@class='tuteContainer']//a[@class='itemHeading tuteItem'][contains(text(),'tute_kaushik')]"
+      @session.find(:xpath, tute).click
+    end
+    self
+  end
+
+  def assert_tute_overlay_items(item)
+    # @session.within_frame 'mainiframe' do
+      case item
+        when 'Tute Set name'
+          expect(@session).to have_xpath("//*[@class='tuteTitleHead'][contains(text(),'tute_kaushik')]")
+        when 'Blog titles added in Tute Set'
+          expect(@session).to have_xpath("//*[@class='listTutes']/li")
+        when 'Up arrow link'
+          expect(@session).to have_xpath("//*[@class='listTutes']/li/div[@class='arrowsGroup']/a[@class='listUp']")
+        when 'Down arrow Link'
+          expect(@session).to have_xpath("//*[@class='listTutes']/li/div[@class='arrowsGroup']/a[@class='listDown']")
+        when 'Delete icon links'
+          expect(@session).to have_xpath("//*[@class='listTutes']/li/div[@class='arrowsGroup']/a[@class='listDelete']")
+        when 'Close(X) icon'
+          expect(@session).to have_xpath("//*[@class='blogListing']//span[@class='crossOver']")
+      end
+    # end
+    self
+  end
+
+  def close_tute_overlay
+    @session.find(:xpath, "//*[@class='blogListing']//span[@class='crossOver']").click
+    self
+  end
 end

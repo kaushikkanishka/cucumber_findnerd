@@ -629,3 +629,20 @@ Feature:
       | Share icon                     |
       | View icon                      |
     And This is the end of testcase
+
+#Verify the blogs listing of Tute Set
+
+  @TC047 @main @sanity @regression @positive @high
+  Scenario: Verify the blogs listing of Tute Set
+
+    Given I login to the site as "Other Normal User"
+    When I clicked on "Tute Sets" link
+    And I clicked the tuteset
+    Then I should see the overlay with the following items
+      | Tute Set name                 |
+      | Blog titles added in Tute Set |
+      | Up arrow link                 |
+      | Down arrow Link               |
+      | Delete icon links             |
+      | Close(X) icon                 |
+    And This is the end of testcase
