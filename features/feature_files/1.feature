@@ -605,3 +605,27 @@ Feature:
     And Post/Node should be submitted to admin approval/rejection
     And Post should be displayed under "My Content>>Published Page"
     And This is the end of testcase
+
+#Verify Tuteset
+
+  @TC046a @main @sanity @regression @positive @high
+  Scenario: Verify message for blank tuteset
+
+    Given I login to the site as "Normal User"
+    When I clicked on "Tute Sets" link
+    Then I should see the "Home >> Tute Sets" breadcrumb
+    And I should see the message "No Tuteset found !!" if no Tute is published
+    And This is the end of testcase
+
+  @TC046b @main @sanity @regression @positive @high
+  Scenario: Verify tuteset block items
+
+    Given I login to the site as "Other Normal User"
+    When I clicked on "Tute Sets" link
+    Then I should see the tuteset
+    And I should see the following items in the tuteset
+      | Tute Set Name as title         |
+      | Count of blogs in the tute set |
+      | Share icon                     |
+      | View icon                      |
+    And This is the end of testcase
