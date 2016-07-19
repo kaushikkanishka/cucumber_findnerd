@@ -73,4 +73,11 @@ class LeftNavigation < Base
     @session.find(:xpath, xpath).click
     ActiveProjects.new(@session)
   end
+
+  def click_tute_sets_link
+    content = "//*[@class='postTechJob myContent shiftingRight subMenuList']"
+    @session.find(:xpath, content).hover
+    @session.find(:xpath, "//*[@class='list-content']/li/a[contains(text(),'Tute Sets')]").click
+    TuteSet.new(@session)
+  end
 end
