@@ -57,16 +57,16 @@ class ActiveProjects < Base
     self
   end
 
-  def assert_active_project_breadcrumb(arg)
-    @session.within_frame 'mainiframe' do
-      breadcrumb = Array.new
-      @session.all(:xpath, "//*[@class='breadcrumb']/li").each do |value|
-        breadcrumb.push value.text.strip
-      end
-      expect(breadcrumb.join(" ")).to eq(arg)
-    end
-    self
-  end
+  # def assert_active_project_breadcrumb(arg)
+  #   @session.within_frame 'mainiframe' do
+  #     breadcrumb = Array.new
+  #     @session.all(:xpath, "//*[@class='breadcrumb']/li").each do |value|
+  #       breadcrumb.push value.text.strip
+  #     end
+  #     expect(breadcrumb.join(" ")).to eq(arg)
+  #   end
+  #   self
+  # end
 
   def assert_new_proj_search_box
     @session.within_frame 'mainiframe' do
