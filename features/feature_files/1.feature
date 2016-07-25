@@ -646,3 +646,78 @@ Feature:
       | Delete icon links             |
       | Close(X) icon                 |
     And This is the end of testcase
+
+#Verify the details & functionality of added blogs in Tute Set Overlay
+
+  @TC048a @main @sanity @regression @positive @high
+  Scenario: Verify Blog diplay page on clicking the blog title
+
+    Given I login to the site as "Other Normal User"
+    When I clicked on "Tute Sets" link
+    And I clicked the tuteset
+    And I clicked the first blog title
+    Then I should see the blog detail page
+    And This is the end of testcase
+
+  @TC048b @main @sanity @regression @positive @high
+  Scenario: Verify Up arrow link functionality on tuteset overlay
+
+    Given I login to the site as "Other Normal User"
+    When I clicked on "Tute Sets" link
+    And I clicked the tuteset
+    And I clicked the Up arrow of a blog
+    Then The blog should be moved one position upwards
+    And This is the end of testcase
+
+  @TC048c @main @sanity @regression @positive @high
+  Scenario: Verify down arrow link functionality on tuteset overlay
+
+    Given I login to the site as "Other Normal User"
+    When I clicked on "Tute Sets" link
+    And I clicked the tuteset
+    And I clicked the Down arrow of a blog
+    Then The blog should be moved one position downwards
+    And This is the end of testcase
+
+  @TC048d @main @sanity @regression @positive @high
+  Scenario: Verify the delete blog functionality from tuteset overlay
+
+    Given I login to the site as "Other Normal User"
+    When I clicked on ".Net" link
+    And I clicked on "Add to tute set" icon of the first blog
+    And I select "tute_kaushik" tuteset from the overlay
+    Then The blog should be added to the tuteset
+    And On removing the blog from tuteset, count should be updated
+    And This is the end of testcase
+
+  Verify the node listing page
+
+  @TC049a @main @sanity @regression @positive @medium
+  Scenario: Verify the node fields on node listing page
+
+    Given I login to the site as "Normal User"
+    When I clicked on "Find Projects >> Site Testing" link
+    Then I should see the "Find Projects >> QA" breadcrumb
+    And I should see the following fields in the Project detail
+      | Project Title       |
+      | Meta data           |
+      | Project Description |
+      | Project Creator ID  |
+      | Voting bar          |
+    And User Card should be displayed on mousehover to userID
+    And This is the end of testcase
+
+  @TC049b @main @sanity @regression @positive @medium
+  Scenario: Verify the node fields on node listing page
+
+    Given I login to the site as "Normal User"
+    When I clicked on "Find Projects >> Site Testing" link
+    Then I should see the "Find Projects >> QA" breadcrumb
+    And I should see the following sections On the Right rail of the Node Listing Page
+      | Posted date dropdown |
+      | Budget date dropdown |
+      | Job Type             |
+      | Max 5 Featured Posts |
+      | Tags                 |
+    And This is the end of testcase
+

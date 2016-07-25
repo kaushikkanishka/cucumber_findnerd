@@ -99,6 +99,9 @@ class ActiveProjects < Base
         when 'View Count'
           xpath2 = "//*[@class='itemContent']/../../div[2]/div[@class='itemContent']/ul[@class='itemStatus']"
           expect(@session).to have_xpath(xpath2)
+        when 'Voting bar'
+          xpath4 = "//*[@class='itemContent']/../../div[1]/div[@class='itemContent']/ul[@class='itemStatus']"
+          expect(@session).to have_xpath(xpath4)
       end
     end
     self
@@ -108,6 +111,33 @@ class ActiveProjects < Base
     @session.within_frame 'mainiframe' do
       @session.find('.next_page').click
         expect(@session).to have_css('.next_page')
+    end
+    self
+  end
+
+  def assert_user_card
+    @session.within_frame 'mainiframe' do
+      a = "//*[@class='itemContent']/../../div[1]//div[@class='userShareCover'][contains(@onmouseover,'showUserShare')]"
+      expect(@session).to have_xpath(a)
+    end
+    self
+  end
+
+  def assert_right_rail_items(option)
+    @session.within_frame 'mainiframe' do
+      case option
+        when 'Posted date dropdown'
+          expect(@session).to have_xpath("//*[@id='posted'][@name='posted']")
+        when 'Budget date dropdown'
+          expect(@session).to have_xpath("//*[@id='budget'][@name='budget']")
+        when 'Job Type'
+          expect(@session).to have_xpath("//*[@id='jobtype1'][@name='jobtype']")
+          expect(@session).to have_xpath("//*[@id='jobtype'][@name='jobtype']")
+        when 'Max 5 Featured Posts'
+          expect(@session).to have_css('.rightListing > li', maximum: 5)
+        when 'Tags'
+          expect(@session).to have_css('#tagDisplay')
+      end
     end
     self
   end

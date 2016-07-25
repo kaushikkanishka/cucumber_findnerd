@@ -87,4 +87,13 @@ class LeftNavigation < Base
     @session.find(:xpath, "//*[@class='list-content']/li/a[contains(text(),'.Net')]").click
     DotNet.new(@session)
   end
+
+  def click_site_testing_link
+    findProject = "//*[@class='findProject shiftingRight subMenuList']"
+    @session.find(:xpath, findProject).hover
+    @session.find(:xpath, "//*[@class='list-content']/li/a[contains(text(),'Site Testing')]").click
+    ActiveProjects.new(@session)
+  end
+
+
 end
