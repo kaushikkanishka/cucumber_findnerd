@@ -92,4 +92,10 @@ class Base
     end
     self
   end
+
+  def search_blog(blog_name)
+    @session.find('#q').set(blog_name)
+    @session.find('#submitbutton').click
+    self
+  end
 end

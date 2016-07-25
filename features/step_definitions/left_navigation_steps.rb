@@ -43,3 +43,7 @@ end
 When(/^I clicked on "Tute Sets" link$/) do
   @page = @navi.click_tute_sets_link
 end
+
+When(/^I clicked on ".Net" link$/) do
+  @page = @navi.click_dot_net_link
+end
