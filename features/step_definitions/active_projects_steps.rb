@@ -56,3 +56,13 @@ end
 And(/^Pagination for project count greater than six$/) do
   @page = @page.assert_project_count
 end
+
+And(/^User Card should be displayed on mousehover to userID$/) do
+  @page = @page.assert_user_card
+end
+
+And(/^I should see the following sections On the Right rail of the Node Listing Page$/) do |table|
+  table.raw.flatten.each do |option|
+    @page = @page.assert_right_rail_items(option)
+  end
+end

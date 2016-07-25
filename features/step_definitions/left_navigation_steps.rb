@@ -47,3 +47,7 @@ end
 When(/^I clicked on ".Net" link$/) do
   @page = @navi.click_dot_net_link
 end
+
+When(/^I clicked on "Find Projects >> Site Testing" link$/) do
+  @page = @navi.click_site_testing_link
+end
