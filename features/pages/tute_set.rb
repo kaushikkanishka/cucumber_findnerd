@@ -45,22 +45,20 @@ class TuteSet < Base
   end
 
   def assert_tute_overlay_items(item)
-    # @session.within_frame 'mainiframe' do
-      case item
-        when 'Tute Set name'
-          expect(@session).to have_xpath("//*[@class='tuteTitleHead'][contains(text(),'tute_kaushik')]")
-        when 'Blog titles added in Tute Set'
-          expect(@session).to have_xpath("//*[@class='listTutes']/li")
-        when 'Up arrow link'
-          expect(@session).to have_xpath("//*[@class='listTutes']/li/div[@class='arrowsGroup']/a[@class='listUp']")
-        when 'Down arrow Link'
-          expect(@session).to have_xpath("//*[@class='listTutes']/li/div[@class='arrowsGroup']/a[@class='listDown']")
-        when 'Delete icon links'
-          expect(@session).to have_xpath("//*[@class='listTutes']/li/div[@class='arrowsGroup']/a[@class='listDelete']")
-        when 'Close(X) icon'
-          expect(@session).to have_xpath("//*[@class='blogListing']//span[@class='crossOver']")
-      end
-    # end
+    case item
+      when 'Tute Set name'
+        expect(@session).to have_xpath("//*[@class='tuteTitleHead'][contains(text(),'tute_kaushik')]")
+      when 'Blog titles added in Tute Set'
+        expect(@session).to have_xpath("//*[@class='listTutes']/li")
+      when 'Up arrow link'
+        expect(@session).to have_xpath("//*[@class='listTutes']/li/div[@class='arrowsGroup']/a[@class='listUp']")
+      when 'Down arrow Link'
+        expect(@session).to have_xpath("//*[@class='listTutes']/li/div[@class='arrowsGroup']/a[@class='listDown']")
+      when 'Delete icon links'
+        expect(@session).to have_xpath("//*[@class='listTutes']/li/div[@class='arrowsGroup']/a[@class='listDelete']")
+      when 'Close(X) icon'
+        expect(@session).to have_xpath("//*[@class='blogListing']//span[@class='crossOver']")
+    end
     self
   end
 
@@ -68,4 +66,63 @@ class TuteSet < Base
     @session.find(:xpath, "//*[@class='blogListing']//span[@class='crossOver']").click
     self
   end
+
+  def click_first_blog_title
+    @blog_title = @session.find(:xpath, "//*[@class='listTutes']/li[1]/span/a").text
+    @session.find(:xpath, "//*[@class='listTutes']/li[1]/span/a").click
+    self
+  end
+
+  def assert_blog_title
+    @session.within_frame 'mainiframe' do
+      expect(@session.find('.titleList.nodeTitle').text.strip).to eq(@blog_title.strip)
+    end
+    self
+  end
+
+  def click_up_arrow_of_blog
+    @session.find(:xpath, "//*[@class='listTutes']/li[3]/div[@class='arrowsGroup']/a[@class='listUp']").click
+    self
+  end
+
+  def get_initial_position_of_blog_tuteset
+    @blog_title1 = @session.find(:xpath, "//*[@class='listTutes']/li[3]/span/a").text
+    xpath2 = "//*[@class='listTutes']/li/span/a[contains(text(),'#{@blog_title1}')]/../../preceding-sibling::*"
+    a = @session.all(:xpath, xpath2).size
+    @initial_position = a + 1
+    self
+  end
+
+  def assert_position_of_blog_for_up_arrow
+    sleep 2
+    xpath1 = "//*[@class='listTutes']/li/span/a[contains(text(),'#{@blog_title1}')]/../../preceding-sibling::*"
+    b = @session.all(:xpath, xpath1).size
+    next_position = b + 1
+    expect(next_position).to eq(@initial_position-1)
+    @session.find(:xpath, "//*[@class='blogListing']//span[@class='crossOver']").click
+    self
+  end
+
+  def click_down_arrow_of_blog
+    @session.find(:xpath, "//*[@class='listTutes']/li[3]/div[@class='arrowsGroup']/a[@class='listDown']").click
+    self
+  end
+
+  def assert_position_of_blog_for_down_arrow
+    sleep 2
+    xpath1 = "//*[@class='listTutes']/li/span/a[contains(text(),'#{@blog_title1}')]/../../preceding-sibling::*"
+    b = @session.all(:xpath, xpath1).size
+    next_position = b + 1
+    expect(next_position).to eq(@initial_position + 1)
+    @session.find(:xpath, "//*[@class='blogListing']//span[@class='crossOver']").click
+    self
+  end
+
+  def remove_from_tuteset
+    @session.find(:xpath, "//*[@class='listTutes']/li[last()]//a[@class='listDelete']").click
+    @session.accept_alert
+    close_tute_overlay
+    LeftNavigation.new(@session)
+  end
+
 end
