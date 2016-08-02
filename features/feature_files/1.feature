@@ -27,7 +27,7 @@ Feature:
 
     Examples:
       | Username        | Password |
-      | qatest.kkaushik | 123456   |
+      | xxxxxx.xxxxxxxx | xxxxxx   |
 
  #Feature: Verify the email
   @TC007a @main @sanity @critical @signin @positive @regression
@@ -72,7 +72,7 @@ Feature:
 
     Examples:
       | LinkedIn_username    | LinkedIn_password |
-      | qabrij0303@gmail.com | manola0303        |
+      | xxxxxxxxxx@gmail.com | xxxxxxxxxx        |
 
  #Verify the browse users functionality
   @TC010 @main @sanity @positive @medium @regression
