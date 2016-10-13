@@ -77,6 +77,7 @@ class PostProject < Base
       when 'Workload'
         expect(@session).to(have_css('#node_estimatedworkload_id'))
       when 'Featured Questions'
+        sleep 1
         expect(@session).to have_xpath("//*[@id='disp_questions']/ul")
       when 'Ask Nerds'
         expect(@session).to have_xpath("//*[@id='ask_nerds']/ul")

@@ -28,7 +28,7 @@ class Base
 
   def browser_back_button
     @session.evaluate_script('window.history.back()')
-    # sleep 3
+    sleep 3
     self
   end
 

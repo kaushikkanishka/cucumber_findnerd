@@ -39,7 +39,7 @@ Feature:
     And I enter email id in Forgot Password overlay
     And I clicked on "Reset my Password" button
     Then Following message is displayed on clicking "Reset Password" button
-      |Instructions to reset your password have been emailed to you|
+      | Instructions to reset your password have been emailed to you |
     And Email with "Password Reset Instructions" subject should be received.
 
   @TC007b @main @sanity @critical @signin @positive @regression
@@ -51,7 +51,7 @@ Feature:
     And I enter email id in Forgot Password overlay
     And I clicked on "Reset my Password" button
     And Following message is displayed on clicking "Reset Password" button
-      |Instructions to reset your password have been emailed to you|
+      | Instructions to reset your password have been emailed to you |
     And I clicked "Reset Password" link on email
     And I enter the new password
     Then Passsword should be changed and I loggedin as "GmailUser"
@@ -339,12 +339,12 @@ Feature:
     And I should see the list of All/selected Project Members Name as title in Project Report
     And I should see the Weekly Hours Block below the Project Member names
     And I should see the following in the middle section of calender
-      |Date block background colour as Green for working day|
-      |Date block background colour as Grey for weekends    |
-      |Sa and Su abbreviations for weekends                 |
-      |Total effort for each block in front of Weekly Hours |
-      |Week default value should be 0.0                     |
-      |Effort Hours in every Date block with zero as default|
+      | Date block background colour as Green for working day |
+      | Date block background colour as Grey for weekends     |
+      | Sa and Su abbreviations for weekends                  |
+      | Total effort for each block in front of Weekly Hours  |
+      | Week default value should be 0.0                      |
+      | Effort Hours in every Date block with zero as default |
     And I should see total worked hours in Right Section of Calender with default as zero
     And This is the end of testcase
 
@@ -370,7 +370,7 @@ Feature:
       | Publish Tenure day          |
       | Voting bar                  |
       | Comments Section            |
-    And Publish Confirmation Page should have "Home << FindProjects << Automation" breadcrumb
+    And Publish Confirmation Page should have "Home << NerdDigest << Automation" breadcrumb
     And Publish Confirmation Page should have blog title as "Test Title"
     And Publish Confirmation Page should have text as "This is a dummy text for testing"
     And Publish Confirmation Page should have tags as "Test"
@@ -420,7 +420,7 @@ Feature:
     Given I login to the site as "Normal User"
     When I clicked on "My Active Projects" link
     And I clicked on "Setup new Project" button
-    Then I should see the Text Box with "Enter Project Title" as placeholder
+    Then I should see the Text Box with "Enter Project Title...." as placeholder
     And I should see Save and Close on entering the title
     And This is the end of testcase
 
@@ -500,7 +500,7 @@ Feature:
     And I enter "test" as dummy tags
     And I clicked the "Preview" button
     Then I should redirect to Publish Confirmation Page
-    And Publish Confirmation Page should have "Home << FindProjects << Automation" breadcrumb
+    And Publish Confirmation Page should have "Home << NerdDigest << Automation" breadcrumb
     And Publish Confirmation Page should have the following fields
       | Publish Button     |
       | Back button        |
@@ -523,7 +523,7 @@ Feature:
     And I clicked the recently created project
     And I clicked "Publish" button
     Then I should be see the following message
-      | You have successfully published your post. Waiting for admin approval. Click here to continue. |
+      | You have successfully published your post. Click here to continue. |
     And Publish & Back buttons should disappear
     And Post/Node should be submitted to admin approval/rejection
     And Post should be displayed under "My Content>>Published Page"
@@ -690,7 +690,7 @@ Feature:
     And On removing the blog from tuteset, count should be updated
     And This is the end of testcase
 
-  Verify the node listing page
+ # Verify the node listing page
 
   @TC049a @main @sanity @regression @positive @medium
   Scenario: Verify the node fields on node listing page

@@ -234,9 +234,8 @@ class CompanyProfile < Base
   def assert_previous_chat_message
     @session.within_frame 'mainiframe' do
       sleep 2
-      b = "//*[@id='company_conference']/div[@class='antiscroll-inner']/div[@class='chatconference']/div[last()-2]//"
-      a = @session.find(:xpath, "#{b}div[@class='messageTime']/span[@class='timer'][contains(text(),'second(s) ago')]")
-      # b = "//*[@id='c_73_conference_display']/div[last()-2]//div[@class='messageTime']/span[@class='timer'][contains(text(),'second(s) ago')]"
+      b = "//*[@class='chatconference']/div[last()-2]//"
+      a = "#{b}div[@class='messageTime']/span[@class='timer'][contains(text(),'second(s) ago')]"
       expect(@session).to have_xpath(a)
     end
     self
@@ -246,10 +245,8 @@ class CompanyProfile < Base
     @session.within_frame 'mainiframe' do
       bbb = "//*[@id='company_conference']/div[@class='antiscroll-inner']/div[@class='chatconference']"
       a = @session.find(:xpath, "#{bbb}/div[last()-3]//div[@class='messagerow']/a").text
-      # a = @session.find(:xpath, "//*[@id='c_73_conference_display']/div[last()-3]//div[@class='messagerow']/a").text
       bbb = "//*[@id='company_conference']/div[@class='antiscroll-inner']/div[@class='chatconference']"
       @session.find(:xpath, "#{bbb}/div[last()-3]//div[@class='messagerow']/a").click
-      # @session.find(:xpath, "//*[@id='c_73_conference_display']/div[last()-3]//div[@class='messagerow']/a").click
       b = @session.find(:xpath, "//*[@id='profileInformation']/div[@id='profileImageCover']//a").text.split('@')
       expect(b[1]).to eq(a)
     end
@@ -259,11 +256,11 @@ class CompanyProfile < Base
   def assert_chat_fields(fields)
       case fields
         when 'Online users'
-          expect(@session).to have_css('#c_73_presence')
+          expect(@session).to have_css('.chatpresence > a')
         when 'Message screen'
-          expect(@session).to have_xpath("//*[@class='chatconference']")
+          expect(@session).to have_css('.chatconference')
         when 'Text field to send the message'
-          expect(@session).to have_xpath("//*[@id='c_73_conference_chatm']")
+          expect(@session).to have_css('.chattextarea')
         when 'History'
           expect(@session).to have_xpath("//*[@class='historyBox']/a[@title='Get Room Chat History']")
       end

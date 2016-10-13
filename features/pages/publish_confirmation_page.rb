@@ -102,7 +102,12 @@ class PublishConfirmationPage < Base
 
   def click_publish_button
     @session.within_frame 'mainiframe' do
-      @session.find(:xpath, "//*[@id='blog8']//div[@class='itemOptions'][1]//a[@id='publish']").click
+      a = @session.all('#publish').size
+      if a == 1
+        @session.find(:xpath, "//*[@id='publish']").click
+      else
+        @session.find(:xpath, "//*[@class='items votingBar']//div[@class='itemOptions'][1]//a[@id='publish']").click
+      end
     end
     PublishNodePage.new(@session)
   end
@@ -121,4 +126,6 @@ class PublishConfirmationPage < Base
     end
     NerdDigest.new(@session)
   end
+
+
 end

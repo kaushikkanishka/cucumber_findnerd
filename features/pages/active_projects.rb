@@ -6,7 +6,7 @@ class ActiveProjects < Base
   def assert_new_project_title_placeholder
     @session.within_frame 'mainiframe' do
       placeholder = @session.find(:xpath, "//*[@id='node_title']")['placeholder']
-      expect(placeholder.strip).to eq("Enter Project Title....")
+      expect(placeholder.strip).to eq("Setup a new Project")
     end
     self
   end
