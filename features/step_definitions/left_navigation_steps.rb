@@ -51,3 +51,7 @@ end
 When(/^I clicked on "Find Projects >> Site Testing" link$/) do
   @page = @navi.click_site_testing_link
 end
+
+When(/^I clicked on "Nerd Digest" link$/) do
+  @page = @navi.click_nerd_digest_link
+end

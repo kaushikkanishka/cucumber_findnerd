@@ -20,4 +20,47 @@ class NerdDigest < Base
     end
     self
   end
+
+  def click_tag(tag)
+    @session.within_frame 'mainiframe' do
+      @session.find(:xpath, "//*[@id='tagDisplay']//span[text()='#{tag}']").click
+      sleep 3
+    end
+    self
+  end
+
+  def assert_tags_above_featured_section(arg)
+    @session.within_frame 'mainiframe' do
+      expect(@session).to have_xpath("//*[@id='selTags']/div[text()='#{arg}']")
+    end
+    self
+  end
+
+  def assert_selected_tag_posts(arg)
+    @session.within_frame 'mainiframe' do
+      expect(@session).to have_xpath("//*[@class='tagName']//a/span[text()=' #{arg} ']")
+    end
+    self
+  end
+
+  def select_first_post
+    @session.within_frame 'mainiframe' do
+      @session.find(:xpath, "//*[@class='row']/div[1]//a[@class='itemHeading']").click
+    end
+    self
+  end
+
+  def click_tag_cross_button(arg)
+    @session.within_frame 'mainiframe' do
+      @session.find(:xpath, "//*[@id='selTags']/div[text()='#{arg}']/a").click
+    end
+    self
+  end
+
+  # def open_respective_tag_post(arg)
+  #   @session.within_frame 'mainiframe' do
+  #     @session.all(:xpath, "//*[@id='leftContent']//div[@class='itemContent']//a[text()='Automation']/../../../..[1]")
+  #   end
+  #   self
+  # end
 end

@@ -95,5 +95,8 @@ class LeftNavigation < Base
     ActiveProjects.new(@session)
   end
 
-
+  def click_nerd_digest_link
+    @session.find(:xpath, "//*[@class='nerd-digest']").click
+    NerdDigest.new(@session)
+  end
 end

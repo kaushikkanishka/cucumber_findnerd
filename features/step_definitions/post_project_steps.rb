@@ -51,6 +51,7 @@ end
 And(/^I enter "([^"]*)" as dummy tags$/) do |arg|
   @dummy_tags = arg.strip
   @page = @page.enter_blog_tags(@dummy_tags)
+  sleep 1
 end
 
 And(/^I clicked the "Preview" button$/) do

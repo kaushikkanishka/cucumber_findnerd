@@ -2,7 +2,7 @@ And(/^I clicked on "Setup new Project" button$/) do
   @page = @page.click_setup_project_button
 end
 
-Then(/^I should see the Text Box with "Enter Project Title" as placeholder$/) do
+Then(/^I should see the Text Box with "Enter Project Title...." as placeholder$/) do
   @page = @page.assert_new_project_title_placeholder
 end
 
