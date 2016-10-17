@@ -25,3 +25,12 @@ And(/^I should see Terms and Conditions overlay$/) do
   pending
 end
 
+
+When(/^I clicked on "Tech Nerd" link on homepage$/) do
+  @page = @page.click_tech_nerd_homepage
+end
+
+And(/^I clicked on "Nerd Digest" link on homepage$/) do
+  @page = @page.click_nerd_digest_homepage
+end
+

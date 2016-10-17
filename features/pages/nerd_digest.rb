@@ -169,4 +169,35 @@ class NerdDigest < Base
     end
     self
   end
+
+  def click_userid_follow_link
+      a = "//*[@class='itemContent']/../../div[1]//div[@class='userShareCover'][contains(@onmouseover,'showUserShare')]"
+      @session.find(:xpath, a).hover
+      b= "#{a}//div[@class='userInfoCard']/a[@class='follow']"
+      @session.find(:xpath, "#{a}//div[@class='userInfoCard']/a[@class='follow']").click
+      Login.new(@session)
+  end
+
+  def click_userid_recomendations_link
+      a = "//*[@class='itemContent']/../../div[1]//div[@class='userShareCover'][contains(@onmouseover,'showUserShare')]"
+      @session.find(:xpath, a).hover
+      b= "#{a}//div[@class='userInfoCard']/a[@class='follow']"
+      @session.find(:xpath, "#{a}//div[@class='userInfoCard']/a[@class='recommend']").click
+      Login.new(@session)
+  end
+
+  def click_userid_Offline_msg_link
+      a = "//*[@class='itemContent']/../../div[1]//div[@class='userShareCover'][contains(@onmouseover,'showUserShare')]"
+      @session.find(:xpath, a).hover
+      b= "#{a}//div[@class='userInfoCard']/a[@class='follow']"
+      @session.find(:xpath, "#{a}//div[@class='userInfoCard']/a[@class='offlinemessage']").click
+      Login.new(@session)
+  end
+
+  def hover_userID
+    a = "//*[@class='itemContent']/../../div[1]//div[@class='userShareCover'][contains(@onmouseover,'showUserShare')]"
+    expect(@session).to have_xpath(a)
+    self
+  end
+
 end
