@@ -63,4 +63,110 @@ class NerdDigest < Base
   #   end
   #   self
   # end
+
+  def getPageURL
+    @session.within_frame 'mainiframe' do
+      puts "current_url = #{@session.current_url}"
+    end
+    self
+  end
+
+  def click_next_btn
+    @session.within_frame 'mainiframe' do
+      @session.find('.next_page').click
+      sleep 5
+    end
+    self
+  end
+
+  def click_prev_btn
+    @session.within_frame 'mainiframe' do
+      @session.find('.prev_page').click
+      sleep 5
+    end
+    self
+  end
+
+  def assert_page_number_link
+    @session.within_frame 'mainiframe' do
+      expect(@session.find(:xpath, "//*[@class='paginate paginajax']/a[1]").text.to_i).to eq(2)
+    end
+    self
+  end
+
+  def assert_pagination_next_btn
+    @session.within_frame 'mainiframe' do
+      expect(@session).to have_css('.next_page')
+    end
+    self
+  end
+
+  def assert_pagination_prev_btn
+    @session.within_frame 'mainiframe' do
+      expect(@session).to have_css('.prev_page')
+    end
+    self
+  end
+
+  def click_page_number_link
+    @session.within_frame 'mainiframe' do
+      @session.find(:xpath, "//*[@class='paginate paginajax']/a[1]").click
+      sleep 5
+    end
+    self
+  end
+
+  def assert_next_page
+    @session.within_frame 'mainiframe' do
+      page_number = @session.current_url.split('nodes/NerdDigest/')
+      expect(page_number[1].to_i).to eq(@current_page_number+1)
+    end
+    self
+  end
+
+  def get_page_number
+    @session.within_frame 'mainiframe' do
+      current_page = @session.current_url.split('nodes/NerdDigest/')
+      @current_page_number = current_page[1].to_i
+    end
+    self
+  end
+
+  def assert_prev_page
+    @session.within_frame 'mainiframe' do
+      page_number = @session.current_url.split('nodes/NerdDigest/')
+      expect(page_number[1].to_i).to eq(@current_page_number-1)
+    end
+    self
+  end
+
+  def click_last_pagination_link
+    @session.within_frame 'mainiframe' do
+      @session.find(:xpath, "//*[@class='paginate paginajax']/a[last()]/preceding-sibling::a[1]").click
+      sleep 5
+    end
+    self
+  end
+
+  def click_first_pagination_link
+    @session.within_frame 'mainiframe' do
+      @session.find(:xpath, "//*[@class='paginate paginajax']/a[1]/following-sibling::a[1]").click
+      sleep 5
+    end
+    self
+  end
+
+  def assert_no_next_button
+    @session.within_frame 'mainiframe' do
+      expect(@session).not_to have_css('.next_page')
+    end
+    self
+  end
+
+  def assert_no_prev_button
+    @session.within_frame 'mainiframe' do
+      expect(@session).not_to have_css('.prev_page')
+    end
+    self
+  end
 end
