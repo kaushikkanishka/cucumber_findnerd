@@ -721,3 +721,28 @@ Feature:
       | Tags                 |
     And This is the end of testcase
 
+  @TC059a
+  Scenario: Verify the “Tags” Section Search functionality for single tag selection
+
+    Given I login to the site as "Normal User"
+    When I clicked on "Nerd Digest" link
+    And I clicked on "Manual Testing" tag from right rail tag Section
+    Then I should see "Manual Testing" tag above the Featured Section
+    And I should see posts/articles/nodes having "Manual Testing" tag
+    And "Manual Testing" tag should be removed on clicking the cross button
+#    And I should see all the posts on clicking the cross button
+    And This is the end of testcase
+
+  @TC060
+  Scenario: Verifying Pagination in Node Listing page`
+
+    Given I login to the site as "Normal User"
+    When I clicked on "Nerd Digest" link
+    Then I should see Page number link and Next button in the pagination section
+    And I should see the Previous and Next button on clicking between pages link
+    And I should see next page post on clicking the next button
+    And I should see previous page post on clicking previous button
+    And I should not see the next button on clicking last page link
+    And I should not see the Previous button on clicking first page link
+    And This is the end of testcase
+

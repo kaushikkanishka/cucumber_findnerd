@@ -40,3 +40,46 @@ end
 And(/^I should also see posts\/articles\/nodes having "([^"]*)" tag$/) do |arg|
   @page = @page.open_respective_tag_post(arg)
 end
+
+Then(/^I see the URL$/) do
+  @page = @page.getPageURL
+end
+
+And(/^I clicked on next button$/) do
+  @page = @page.click_next_btn
+end
+
+Then(/^I should see Page number link and Next button in the pagination section$/) do
+  @page = @page.assert_page_number_link
+  @page = @page.assert_pagination_next_btn
+end
+
+And(/^I should see the Previous and Next button on clicking between pages link$/) do
+  @page = @page.click_page_number_link
+  @page = @page.assert_pagination_next_btn
+  @page = @page.assert_pagination_prev_btn
+end
+
+And(/^I should see next page post on clicking the next button$/) do
+  @page = @page.get_page_number
+  @page = @page.click_next_btn
+  @page = @page.assert_next_page
+
+end
+
+And(/^I should see previous page post on clicking previous button$/) do
+  @page = @page.get_page_number
+  @page = @page.click_prev_btn
+  @page = @page.assert_prev_page
+end
+
+And(/^I should not see the next button on clicking last page link$/) do
+  @page = @page.click_last_pagination_link
+  @page = @page.assert_no_next_button
+end
+
+
+And(/^I should not see the Previous button on clicking first page link$/) do
+  @page = @page.click_first_pagination_link
+  @page = @page.assert_no_prev_button
+end
