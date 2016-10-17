@@ -50,4 +50,15 @@ class Homepage < Base
     Login.new(@session)
   end
 
+  def click_tech_nerd_homepage
+    @session.find('.tab.technerd').click
+    self
+  end
+
+  def click_nerd_digest_homepage
+    @session.find('.clr.nerdDigestTab').click
+    NerdDigest.new(@session)
+  end
+
+
 end

@@ -83,3 +83,19 @@ And(/^I should not see the Previous button on clicking first page link$/) do
   @page = @page.click_first_pagination_link
   @page = @page.assert_no_prev_button
 end
+
+And(/^Signin overlay should be opened on clicking Follow\/Recomendations\/Offline message link$/) do
+  @page = @page.click_userid_follow_link
+  @page = @page.assert_signin_overlay
+  @page = @page.close_signin_overlay
+  @page = @page.click_userid_recomendations_link
+  @page = @page.assert_signin_overlay
+  @page = @page.close_signin_overlay
+  @page = @page.click_userid_Offline_msg_link
+  @page = @page.assert_signin_overlay
+  @page = @page.close_signin_overlay
+end
+
+Then(/^Mousehovering to userID displays the User Card$/) do
+  @page = @page.hover_userID
+end

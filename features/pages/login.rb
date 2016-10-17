@@ -96,4 +96,14 @@ class Login < Base
     expect(@session.find(:xpath, "//*[@class='welcomeMessage']//a").text.strip).to eq(arg)
     self
   end
+
+  def assert_signin_overlay
+    expect(@session).to have_css('#signinoverlay')
+    self
+  end
+
+  def close_signin_overlay
+    @session.find(:xpath, "//*[@id='signinoverlay']//span[@class='closeblog']").click
+    NerdDigest.new(@session)
+  end
 end
