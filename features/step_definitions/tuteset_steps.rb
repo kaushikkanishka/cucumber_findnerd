@@ -24,7 +24,7 @@ Then(/^I should see the overlay with the following items$/) do |table|
 end
 
 And(/^I clicked the first blog title$/) do
-  @page = @page.click_first_blog_title
+  @page = @page.first_blog_title_click
 end
 
 Then(/^I should see the blog detail page$/) do
@@ -56,4 +56,26 @@ And(/^On removing the blog from tuteset, count should be updated$/) do
   @page = @page.remove_from_tuteset
   @page = @page.click_dot_net_link
   @page = @page.assert_userTuteCount_after_deletion
+end
+
+And(/^I mouse hover to share icon$/) do
+  @page = @page.hover_share_icon
+end
+
+Then(/^I should see "Share this with friends!" Overlay$/) do
+  @page = @page.assert_share_with_friends_overlay
+end
+
+And(/^Node should be shared on "([^"]*)" Page after clicking "Twitter" icon in the overlay$/) do |arg|
+  array = @page.fetch_username_password(arg)
+  @username = array[0].strip
+  @password = array[1].strip
+  @page = @page.click_twitter_icon
+  @page = @page.switch_twitter_window(@username, @password)
+
+end
+
+
+And(/^Sharing Preview Page should be closed after successful sharing$/) do
+  @page = @page.close_twitter_window
 end

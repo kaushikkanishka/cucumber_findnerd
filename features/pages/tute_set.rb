@@ -125,4 +125,45 @@ class TuteSet < Base
     LeftNavigation.new(@session)
   end
 
+  def hover_share_icon
+    @session.within_frame 'mainiframe' do
+      # @session.find('.share').hover
+      @session.find('.share').click
+    end
+    self
+  end
+
+  def assert_share_with_friends_overlay
+    @session.within_frame 'mainiframe' do
+      @session.within_frame 'stLframe' do
+        expect(@session).to have_xpath("//*[@id='popular'][text()='Share this with friends!']")
+      end
+    end
+    self
+  end
+
+  def click_twitter_icon
+    @session.within_frame 'mainiframe' do
+      @session.within_frame 'stLframe' do
+        @session.find('#post_twitter_link').click
+      end
+    end
+    self
+  end
+
+  def switch_twitter_window(username, password)
+      @session.switch_to_window(@session.windows.last)
+      @session.find('#username_or_email').set(username)
+      @session.find('#password').set(password)
+      @session.find('.button.selected.submit').click
+      @session.find(:xpath, "//*[@class='button selected submit'][@value='Tweet']").click
+    self
+  end
+
+  def close_twitter_window
+    @session.find('#btn-close').click
+    @session.switch_to_window(@session.windows.first)
+    self
+  end
 end
+

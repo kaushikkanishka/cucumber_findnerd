@@ -98,4 +98,12 @@ class Base
     @session.find('#submitbutton').click
     self
   end
+
+  def first_blog_title_click
+    @session.within_frame 'mainiframe' do
+      @blog_title = @session.find(:xpath, "//*[@class='span4'][1]//a[@class='itemHeading']").text
+      @session.find(:xpath, "//*[@class='span4'][1]//a[@class='itemHeading']").click
+    end
+    TuteSet.new(@session)
+  end
 end
