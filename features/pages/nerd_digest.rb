@@ -200,4 +200,7 @@ class NerdDigest < Base
     self
   end
 
+  def click_nerd_digest_first_blog
+    w
+  end
 end

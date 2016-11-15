@@ -746,3 +746,24 @@ Feature:
     And I should not see the Previous button on clicking first page link
     And This is the end of testcase
 
+  @TC061
+  Scenario: Verify the User Card Functionality for logout users
+
+    Given I am at Home Page
+    When I clicked on "Tech Nerd" link on homepage
+    And I clicked on "Nerd Digest" link on homepage
+    Then Mousehovering to userID displays the User Card
+    And Signin overlay should be opened on clicking Follow/Recomendations/Offline message link
+
+  @TC062
+  Scenario: Verify node Sharing & Shared Node/post
+
+    Given I login to the site as "Normal User"
+    When I clicked on "Nerd Digest" link
+    And I clicked the first blog title
+    And I mouse hover to share icon
+    Then I should see "Share this with friends!" Overlay
+    And Node should be shared on "Twitter" Page after clicking "Twitter" icon in the overlay
+    And Sharing Preview Page should be closed after successful sharing
+    And This is the end of testcase
+
