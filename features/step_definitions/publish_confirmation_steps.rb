@@ -45,3 +45,4 @@ end
 And(/^I clicked the node link$/) do
   @page = @page.click_node_link
 end
+

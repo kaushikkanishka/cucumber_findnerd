@@ -99,3 +99,39 @@ end
 Then(/^Mousehovering to userID displays the User Card$/) do
   @page = @page.hover_userID
 end
+
+And(/^I clicked on "Add Tute" Button from voting bar of the Node Block$/) do
+  @page = @page.click_nerd_listing_add_tute
+end
+
+Then(/^Tute overlay should be opened$/) do
+  @page = @page.assert_tute_overlay
+end
+
+And(/^I should see the same text in Create Set box as entered in "Add to" textbox$/) do
+  @Timestamp = @page.read_time_stamp
+  @page = @page.assert_create_tuteset_box_text(@Timestamp)
+end
+
+And(/^I should see "([^"]*)" and "([^"]*)" button on clicking "Create Set" Button$/) do |arg1, arg2|
+  @page = @page.click_create_set_btn
+  @page = @page.assert_create_tuteset_overlay_btn(arg1, arg2)
+end
+
+And(/^Current blog should be added in the tute set$/) do
+  @page, @nerd_digest_pg = @page.click_tute_sets_link
+  @page = @nerd_digest_pg.click_new_tuteset
+  @page = @page.assert_current_blog_addition_in_tuteset
+end
+
+And(/^I should see Tick sign infront of Tute after clicking Save button$/) do
+  @page = @page.assert_tuteset_ticksign
+end
+
+And(/^Count in the Add tute button should be incremented$/) do
+  @page = @page.assert_tute_count
+end
+
+And(/^I should see the successful Message "([^"]*)"$/) do |arg|
+  @page = @page.assert_tute_creation_message(arg)
+end
