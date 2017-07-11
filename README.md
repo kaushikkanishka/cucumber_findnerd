@@ -14,3 +14,6 @@ http://localhost:8080/jenkins
 
 #Generate Reports
 cucumber --tags @sanity features --format html --out reports
+
+#Rerun feature
+cucumber features/retest.feature -f pretty -f rerun --out rerun.txt || cucumber @rerun.txt
